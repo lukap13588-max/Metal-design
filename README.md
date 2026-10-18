@@ -1,23 +1,17 @@
-# METAL DESIGN 3D v2.1
+# METAL DESIGN 3D – Version 2.5
 
-## Neu: Direktauswahl in 3D
-- Ein Geländerfeld direkt im 3D-Modell anklicken: Es wird im Feld-Dropdown ausgewählt und kann individuell befüllt werden.
-- Pfosten im 3D-Modell anklicken: den ausgewählten inneren Pfosten um bis zu ±300 mm versetzen oder zurücksetzen.
-- End- und Eckpfosten bleiben fix.
-- Die individuellen Pfostenversätze werden in der JSON-Konfiguration exportiert.
-- Drehbewegungen werden anhand der Pointer-Bewegung von Klicks unterschieden.
+## Neu: überarbeitete Bedienoberfläche
+- Modernisierte Farben, Abstände, Formulare und Konfigurationsbereiche.
+- Größeres, responsives 3D-Fenster mit Schnellzugriff auf Gesamtansicht, Vorderansicht, Draufsicht und Perspektive.
+- **Präsentationsmodus**: blendet den Einstellungsbereich aus, damit das Modell Kunden groß gezeigt werden kann. Mit „Bearbeiten“ oder Escape zurückwechseln.
+- Projekttitel und aktueller Modus werden direkt im 3D-Fenster angezeigt.
+- Auf schmalen Displays steht die 3D-Ansicht vor den Einstellungen.
 
-## Bedienung
-1. Geländermodus auswählen und Maße einstellen.
-2. Feld anklicken, Füllung auswählen, **Füllung für Feld übernehmen**.
-3. Inneren Pfosten anklicken, **Ausgewählten Pfosten verschieben** einstellen, **Pfostenversatz übernehmen**.
-4. Bei Bedarf Kamera drehen, zoomen, Bemaßungen und Vollbild verwenden.
-
-## Vorhandene Funktionen
-Gerade/L/U-Geländer; gerade/L/U-Stiegen; Material-, Farb- und Profilwahl; Klarglas, Milchglas, Lochblech, Streckmetall; Pfostenbefestigungen; Rundhandlauf; drei Umgebungen; Kameraansichten; PNG-, JSON- und überschlägiger CSV-Export.
+## Weiterhin enthalten
+Gerade, L- und U-Geländer sowie -Stiegen; Einzelfelder, Pfostenversatz und 3D-Auswahl; Glas, Milchglas, Lochblech, Streckmetall; Materialien, Farben, Profile, Stufenstärke, Holzarten, Setzstufen, Befestigungen; Bemaßung, Export und lokale Projektverwaltung.
 
 ## GitHub Pages
-`index.html` und `README.md` in das Repository-Root hochladen bzw. ersetzen, Commit ausführen und GitHub Pages für Branch `main`, Ordner `/(root)` aktivieren. Internet für Three.js-CDN und WebGL-fähigen Browser erforderlich.
+ZIP entpacken und `index.html` und `README.md` im Repository-Root ersetzen. GitHub Pages: Branch `main`, Ordner `/(root)`. WebGL und Internetzugang (Three.js-CDN) sind erforderlich.
 
-## Einschränkungen
-Nur schematische Kundenvisualisierung, **keine Fertigungszeichnung oder statische Prüfung**. Auswahlkörper sind unsichtbare Trefferflächen; bei Überlappungen kann ein anderes Feld/Pfosten ausgewählt werden. Pfostenverschiebung wird entlang der jeweiligen Geländerseite berechnet; sehr enge Felder und Anschlussdetails sind nicht konstruktiv geprüft. Der JSON-Export ist noch keine Import-/Wiederherstellungsfunktion. Browsertest ausstehend.
+## Grenzen
+Nur schematische Kundenvisualisierung, keine Fertigungszeichnung, Statik oder Normprüfung. Projekte im Browser zusätzlich als JSON sichern. Syntaxprüfung durchgeführt; vollständiger Browsertest ausstehend.

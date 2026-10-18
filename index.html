@@ -1,8 +1,19 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 2.1</title><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 2.5</title><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#edf3fb;background:#0c1523}*{box-sizing:border-box}body{margin:0}header{padding:15px 22px;border-bottom:1px solid #304158;display:flex;justify-content:space-between;align-items:center}h1{font-size:19px;margin:0}small,.muted{color:#aabbd0}main{display:grid;grid-template-columns:350px minmax(0,1fr);height:calc(100dvh - 67px)}aside{overflow:auto;padding:20px;background:#142235;border-right:1px solid #304158}label{display:block;margin:13px 0 6px;font-size:13px;color:#c9d5e6}input,select,button{width:100%;border:1px solid #3c526e;border-radius:8px;padding:11px;background:#1c3048;color:white;font:inherit}button{cursor:pointer;background:#2875db;border:0;font-weight:650;margin-top:10px}button.secondary{background:#304660}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #78b6ff}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{margin:18px 0;padding:13px;border:1px solid #415976;border-radius:9px;line-height:1.7;font-size:13px}.view{position:relative;min-height:350px}canvas{width:100%;height:100%;display:block;touch-action:none}.view:fullscreen{width:100vw;height:100vh;background:#17283c}.view:fullscreen canvas{height:100%}.view:fullscreen .hint{bottom:22px}.hint{position:absolute;bottom:16px;left:16px;background:#102137db;border:1px solid #425a73;border-radius:8px;padding:9px;font-size:12px;pointer-events:none}.tabs{display:flex;gap:8px}.tabs button{margin:0}.tabs button[aria-pressed="true"]{background:#2875db}.tabs button[aria-pressed="false"]{background:#304660}.hidden{display:none!important}#status{color:#ffb5b5;font-size:13px}h2{font-size:16px}fieldset{border:0;padding:0;margin:0}@media(max-width:800px){main{height:auto;grid-template-columns:1fr}aside{order:2}.view{height:53vh;min-height:340px}header{padding:12px}h1{font-size:17px}}
-</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v2.1</small></div><small>LIVE 3D</small></header><main><aside>
+
+/* v2.5 — Responsive studio workspace */
+:root{--bg:#09121e;--panel:#101f30;--edge:#2d435d;--accent:#4ca5ff;--text:#edf4ff}
+body{background:var(--bg)}header{height:72px;background:#0d1a2a;border-color:var(--edge);padding:12px 24px;gap:16px}header h1{letter-spacing:.4px;font-weight:800;font-size:21px}header small{font-size:12px}main{height:calc(100dvh - 72px);grid-template-columns:minmax(310px,370px) minmax(0,1fr)}aside{background:var(--panel);padding:18px 18px 36px;scrollbar-color:#3b5874 transparent}aside>fieldset,aside>.summary,aside>details{border:1px solid var(--edge);border-radius:14px;padding:15px;background:#14263a;margin:12px 0}aside fieldset{margin-top:16px}aside h2{margin:0 0 12px;font-size:15px}input,select{background:#0e1d2e;border:1px solid #405771;border-radius:9px;min-height:42px}input:hover,select:hover{border-color:#6c93bd}button{border-radius:9px;min-height:40px;transition:filter .15s}button:hover{filter:brightness(1.15)}button:active{filter:brightness(.9)}.tabs{position:sticky;top:-18px;z-index:4;background:var(--panel);padding:6px 0 12px}.tabs button{min-height:44px}.view{overflow:hidden;background:#15283b}.view .hint{bottom:18px;left:18px;max-width:calc(100% - 36px)}.view-toolbar{position:absolute;z-index:5;top:16px;left:16px;right:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}.view-toolbar button{pointer-events:auto;width:auto;min-height:36px;margin:0;padding:9px 13px;background:#14263ce8;border:1px solid #486482;box-shadow:0 3px 15px #0003;font-size:12px}.view-toolbar button.primary{background:#2875db;border-color:#2875db}.view-toolbar .toolbar-spacer{flex:1}.view-title{position:absolute;z-index:3;left:18px;bottom:69px;pointer-events:none;background:#102137d9;border:1px solid #425a73;border-radius:9px;padding:10px 14px;font-size:12px}.view-title strong{font-size:14px;display:block}.presentation-note{display:none;position:absolute;bottom:16px;right:16px;max-width:380px;background:#0c1a2dd9;padding:11px 14px;border-radius:9px;color:#b8c9db;font-size:11px;pointer-events:none}body.presentation main{grid-template-columns:0 minmax(0,1fr)}body.presentation aside{display:none}body.presentation .presentation-note{display:block}body.presentation .view{min-height:0}body.presentation .view-toolbar button{background:#14263cf0}body.presentation #presentToggle{background:#2875db}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#89b7e5;margin:24px 0 8px;font-weight:800}#status{min-height:18px}
+@media(max-width:850px){header{height:65px;padding:10px 14px}main{height:auto;grid-template-columns:1fr}aside{order:2;max-height:none;padding:14px}.view{height:52dvh;min-height:360px;order:1}.view-toolbar{top:10px;left:10px;right:10px;gap:5px}.view-toolbar button{padding:8px 9px;font-size:11px}.view-title{left:10px;bottom:60px}.hint{font-size:11px}body.presentation main{height:calc(100dvh - 65px)}body.presentation .view{height:100%;min-height:0}body.presentation aside{display:none}}
+</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v2.5</small></div><small>3D KONFIGURATOR <span style="color:#61c9a9">● LIVE</span></small></header><main><aside>
 <div class="tabs"><button id="tabR" aria-pressed="true" type="button">Geländer</button><button id="tabS" aria-pressed="false" type="button">Stiegen</button></div>
-<label for="project">Projekt / Kunde</label><input id="project" value="Musterprojekt" maxlength="80">
+<section class="summary"><strong>Projektverwaltung</strong><small style="display:block">Lokal im aktuellen Browser speichern oder als JSON-Datei übertragen.</small>
+<label for="savedProjects">Gespeicherte Projekte</label><select id="savedProjects"><option value="">Projekt auswählen …</option></select>
+<div class="pair"><button id="storeProject" type="button">Projekt speichern</button><button id="loadProject" class="secondary" type="button">Projekt öffnen</button></div>
+<div class="pair"><button id="deleteProject" class="secondary" type="button">Projekt löschen</button><button id="importProject" class="secondary" type="button">JSON importieren</button></div>
+<input id="importFile" type="file" accept=".json,application/json" class="hidden">
+<small id="projectMessage" aria-live="polite">Projekte bleiben nur in diesem Browser gespeichert.</small>
+</section><label for="project">Projekt / Kunde</label><input id="project" value="Musterprojekt" maxlength="80">
 <fieldset id="railing"><h2>Balkongeländer</h2>
 <label for="shape">Grundriss</label><select id="shape"><option value="straight">Gerade</option><option value="L">L-Form</option><option value="U">U-Form</option></select>
 <div class="pair"><div><label for="length">Seite A (mm)</label><input id="length" type="number" min="500" max="12000" step="100" value="4000"></div><div><label for="height">Geländerhöhe (mm)</label><input id="height" type="number" min="700" max="1600" step="50" value="1000"></div></div>
@@ -31,7 +42,14 @@
 <div class="pair"><div><label for="rise">Geschosshöhe (mm)</label><input id="rise" type="number" min="800" max="5000" step="50" value="2800"></div><div><label for="stairWidth">Stiegenbreite (mm)</label><input id="stairWidth" type="number" min="600" max="1800" step="50" value="1000"></div></div>
 <div class="pair"><div><label for="tread">Auftritt (mm)</label><input id="tread" type="number" min="200" max="350" step="5" value="280"></div><div><label for="targetRiser">Ziel-Steigung (mm)</label><input id="targetRiser" type="number" min="140" max="210" step="5" value="175"></div></div>
 <label for="stepMaterial">Stufenmaterial</label><select id="stepMaterial"><option value="wood">Holz (Eiche)</option><option value="steel">Stahl</option></select>
+<label for="stepThickness">Stufenstärke (mm)</label><input id="stepThickness" type="number" min="20" max="100" step="5" value="45">
+<label for="riserStyle">Setzstufen</label><select id="riserStyle"><option value="open">Offen</option><option value="closed">Geschlossen</option></select>
+<label for="woodSpecies">Holzart / Oberflächenoptik</label><select id="woodSpecies"><option value="oak">Eiche natur</option><option value="ash">Esche hell</option><option value="walnut">Nussbaum dunkel</option><option value="beech">Buche</option></select>
+<label for="woodFinish">Holzoberfläche</label><select id="woodFinish"><option value="natural">Natur matt</option><option value="oiled">Geölt</option><option value="lacquered">Lackiert</option></select>
+<label for="stepFixing">Stufenbefestigung (schematisch)</label><select id="stepFixing"><option value="angle">Winkelkonsolen</option><option value="plate">Auflageplatten</option><option value="hidden">Verdeckt</option></select>
+<label for="stringerProfile">Wangenprofil</label><select id="stringerProfile"><option value="flat">Flachstahl-Wange</option><option value="box">Rechteck-Hohlprofil</option><option value="channel">U-Profil (schematisch)</option></select>
 <label for="stringer">Stahlwangen</label><select id="stringer"><option value="both">Beidseitig</option><option value="center">Mittelholm</option></select>
+<label for="stairRailStyle">Geländer-Ausführung</label><select id="stairRailStyle"><option value="posts">Pfosten mit Handlauf</option><option value="vertical">Senkrechte Füllstäbe</option><option value="horizontal">Waagrechte Füllstäbe</option><option value="glass">Glasfüllung (schematisch)</option></select>
 <label for="stairRail">Stiegengeländer</label><select id="stairRail"><option value="both">Beidseitig</option><option value="left">Links</option><option value="right">Rechts</option><option value="none">Ohne</option></select>
 <p class="muted" style="font-size:12px">Stufenanzahl wird aus Geschosshöhe und Ziel-Steigung berechnet. Die obere Geschossfläche ist als Anschlusspunkt angenommen.</p></fieldset>
 <label for="environment">3D-Umgebung</label><select id="environment"><option value="studio">Studio – Dunkel</option><option value="bright">Studio – Hell</option><option value="outdoor">Außenbereich – Tageslicht</option></select><label for="material">Tragmaterial</label><select id="material"><option value="steel">Stahl</option><option value="stainless">Edelstahl</option><option value="aluminum">Aluminium</option></select>
@@ -40,7 +58,8 @@
 <label style="display:flex;align-items:center;gap:9px"><input id="dimensions" type="checkbox" checked style="width:auto"> 3D-Bemaßung anzeigen</label>
 <button id="fit">Gesamtansicht</button><button id="front" class="secondary">Vorderansicht</button><button id="sideView" class="secondary">Seitenansicht</button><button id="topView" class="secondary">Draufsicht</button><button id="reset" class="secondary">Perspektive</button><button id="fullscreen" class="secondary">Vollbild 3D</button><button id="save" class="secondary">PNG speichern</button><button id="config" class="secondary">JSON speichern</button>
 <p class="muted" style="font-size:12px;line-height:1.6">Nur schematische Kundenvisualisierung. Keine Statik, Normprüfung, Fertigungszeichnung oder verbindliche Materialberechnung.</p><p id="status" role="alert"></p></aside>
-<section class="view"><canvas id="scene" aria-label="Interaktives 3D-Modell"></canvas><div class="hint">Ziehen: drehen · Scrollen / zwei Finger: zoomen · Rechtsklick: verschieben</div></section></main>
+<section class="view"><div class="view-toolbar" role="toolbar" aria-label="3D-Ansicht">
+<button id="quickFit" type="button">⤢ Gesamt</button><button id="quickFront" type="button">▤ Vorne</button><button id="quickTop" type="button">▦ Oben</button><button id="quickPerspective" type="button">◇ 3D</button><span class="toolbar-spacer"></span><button id="presentToggle" class="primary" type="button" aria-pressed="false">▣ Präsentieren</button></div><div class="view-title"><strong id="viewProject">Musterprojekt</strong><span id="viewMode">Geländer · 3D-Modell</span></div><div class="presentation-note">Konzeptvisualisierung · Maße und Anschlüsse vor Fertigung prüfen</div><canvas id="scene" aria-label="Interaktives 3D-Modell"></canvas><div class="hint">Ziehen: drehen · Scrollen / zwei Finger: zoomen · Rechtsklick: verschieben</div></section></main>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -181,7 +200,13 @@ $('side1').disabled=shape==='straight';$('side2').disabled=shape!=='U';return `G
 function staircase(m){
 const height=n('rise',800,5000)/1000,width=n('stairWidth',600,1800)/1000,tread=n('tread',200,350)/1000,target=n('targetRiser',140,210)/1000;
 const risers=Math.max(3,Math.round(height/target)),rise=height/risers,shape=$('stairShape').value;
-const stepMat=$('stepMaterial').value==='wood'?m.wood:m.metal;
+const stepThickness=n('stepThickness',20,100)/1000;
+const isWood=$('stepMaterial').value==='wood';
+const woodColors={oak:0xb98652,ash:0xd5bc92,walnut:0x69462f,beech:0xc99d70};
+const woodFinish=$('woodFinish').value;
+const stepMat=isWood?new THREE.MeshStandardMaterial({color:woodColors[$('woodSpecies').value]||woodColors.oak,roughness:woodFinish==='lacquered'?.27:woodFinish==='oiled'?.49:.82,metalness:0}):m.metal;
+const riserStyle=$('riserStyle').value;
+const fixing=$('stepFixing').value,profile=$('stringerProfile').value,railStyle=$('stairRailStyle').value;
 const sign=$('turnDirection').value==='left'?-1:1,landingDepth=n('landingDepth',600,2500)/1000;
 const lower=Math.min(risers-2,Math.max(2,Math.round(n('lowerRis',2,25))));
 const middle=Math.max(2,Math.min(risers-lower-2,Math.round(n('middleRis',2,20))));
@@ -198,14 +223,41 @@ function flight({start,axis,count,firstRise,hasTopLanding}){
  const treads=hasTopLanding?count-1:count-1;
  const length=treads*tread;
  for(let i=1;i<=treads;i++){
-   const x=(i-.5)*tread,y=(firstRise+i)*rise-.024;
+   const x=(i-.5)*tread,y=(firstRise+i)*rise-stepThickness/2;
    const p=pos(x,y);
-   const step=box(tread-.012,.048,width,p[0],p[1],p[2],stepMat);
+   const step=box(tread-.012,stepThickness,width,p[0],p[1],p[2],stepMat);
    step.rotation.y=-Math.atan2(axis[1],axis[0]);
    actualSteps++;
+   if(riserStyle==='closed'){
+     const riserBottom=(firstRise+i-1)*rise+stepThickness/2;
+     const riserTop=(firstRise+i)*rise-stepThickness;
+     const riserHeight=Math.max(.025,riserTop-riserBottom);
+     const riserCenter=pos((i-1)*tread+.018,riserBottom+riserHeight/2);
+     const riser=box(.018,riserHeight,width-.015,...riserCenter,stepMat);
+     riser.rotation.y=-Math.atan2(axis[1],axis[0]);
+   }
+   if(fixing!=='hidden'){
+    const bracketMat=m.metal;
+    for(const side of [-1,1]){
+      const z=side*(width/2-.085);
+      const pp=pos(x,y-.042,z);
+      if(fixing==='plate')box(Math.max(.10,tread*.62),.018,.09,...pp,bracketMat);
+      else{
+        box(.10,.012,.09,pp[0],pp[1],pp[2],bracketMat);
+        const v=pos(x,y-.09,z);box(.014,.10,.09,...v,bracketMat);
+      }
+    }
+   }
  }
  const startY=firstRise*rise+.05,endY=(firstRise+count)*rise-.05;
- function sloped(x0,y0,x1,y1,z,thick,depth){beam(pos(x0,y0,z),pos(x1,y1,z),thick,depth,m.metal)}
+ function sloped(x0,y0,x1,y1,z,thick,depth){
+ if(profile==='box')beam(pos(x0,y0,z),pos(x1,y1,z),.12,.12,m.metal);
+ else if(profile==='channel'){
+  beam(pos(x0,y0,z),pos(x1,y1,z),.16,.018,m.metal);
+  beam(pos(x0,y0,z-.042),pos(x1,y1,z-.042),.025,.075,m.metal);
+  beam(pos(x0,y0,z+.042),pos(x1,y1,z+.042),.025,.075,m.metal);
+ }else beam(pos(x0,y0,z),pos(x1,y1,z),thick,depth,m.metal);
+}
  if($('stringer').value==='both'){
    for(const z of [-width/2+.055,width/2-.055])sloped(0,startY,length+.08,endY,z,.18,.07);
  }else sloped(0,startY,length+.08,endY,0,.22,.16);
@@ -217,6 +269,20 @@ function flight({start,axis,count,firstRise,hasTopLanding}){
    beam(pos(x,y,z),pos(x,y+postH,z),.035,.035,m.metal);
   }
   beam(pos(0,firstRise*rise+postH,z),pos(length,(firstRise+treads)*rise+postH,z),.055,.055,m.metal);
+  if(railStyle==='horizontal'){
+   for(const level of [.30,.57,.79])beam(pos(0,firstRise*rise+level,z),pos(length,(firstRise+treads)*rise+level,z),.018,.018,m.metal);
+  }else if(railStyle==='vertical'){
+   const segments=Math.max(2,Math.ceil(length/.12));
+   for(let k=1;k<segments;k++){
+    const x=length*k/segments,y=(firstRise+(treads*k/segments))*rise;
+    beam(pos(x,y+.10,z),pos(x,y+postH-.06,z),.014,.014,m.metal);
+   }
+  }else if(railStyle==='glass'){
+   const centerX=length/2,centerY=(firstRise+treads/2)*rise+postH/2;
+   const panel=box(Math.max(.05,length-.08),postH-.18,.012,...pos(centerX,centerY,z),m.glass);
+   const angle=Math.atan2(axis[1],axis[0]),slope=Math.atan2(treads*rise,Math.max(.01,length));
+   panel.rotation.order='YXZ';panel.rotation.y=-angle;panel.rotation.z=slope;
+  }
  }
  return {length};
 }
@@ -267,7 +333,7 @@ function rebuild(){try{
  updateEnvironment();bom=[];$('csv').disabled=mode==='stairs';clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
 $('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
 function fit(front=false){const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());const r=Math.max(size.length(),1.5),distance=Math.min(95,r*1.7);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(front?0:distance*.55,front?0:distance*.42,distance));camera.near=.05;camera.far=250;camera.updateProjectionMatrix();controls.update()}
-function switchMode(next){mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
+function switchMode(next){$('viewMode').textContent=next==='railing'?'Geländer · 3D-Modell':'Stiege · 3D-Modell';mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
 $('tabR').onclick=()=>switchMode('railing');$('tabS').onclick=()=>switchMode('stairs');
 for(const el of document.querySelectorAll('aside input, aside select'))el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()});
 let down=null;
@@ -315,6 +381,18 @@ $('resetPost').onclick=()=>{
  delete individualPostOffsets[selectedPart.key];rebuild();
 };
 $('clearFields').onclick=()=>{for(const k of Object.keys(fieldOverrides))delete fieldOverrides[k];rebuild()};
+$('quickFit').onclick=()=>fit();
+$('quickFront').onclick=()=>cameraView('front');
+$('quickTop').onclick=()=>cameraView('top');
+$('quickPerspective').onclick=()=>cameraView('perspective');
+$('presentToggle').onclick=()=>{
+ const active=document.body.classList.toggle('presentation');
+ $('presentToggle').textContent=active?'✕ Bearbeiten':'▣ Präsentieren';
+ $('presentToggle').setAttribute('aria-pressed',String(active));
+ requestAnimationFrame(()=>{resize();fit()});
+};
+$('project').addEventListener('input',()=>{$('viewProject').textContent=$('project').value||'Unbenanntes Projekt'});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('presentation'))$('presentToggle').click()});
 $('dimensions').addEventListener('change',()=>{rebuild()});
 $('sideView').onclick=()=>cameraView('side');$('topView').onclick=()=>cameraView('top');
 $('fullscreen').onclick=async()=>{const view=document.querySelector('.view');try{if(document.fullscreenElement)await document.exitFullscreen();else await view.requestFullscreen()}catch(e){$('status').textContent='Vollbild nicht verfügbar: '+e.message}};
@@ -326,6 +404,74 @@ $('csv').onclick=()=>{
  const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
  const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-materialuebersicht.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
-$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','barGap','spacing','postOffset','mount','rail','glassMount','environment','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail','environment'];const data={application:'METAL DESIGN 3D',version:'2.1',fieldOverrides:{...fieldOverrides},individualPostOffsets:{...individualPostOffsets},mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+const projectFields=['shape','length','height','side1','side2','type','barGap','spacing','postOffset','mount','rail','glassMount','environment','postProfile','handProfile','stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stepThickness','riserStyle','woodSpecies','woodFinish','stepFixing','stringerProfile','stringer','stairRailStyle','stairRail','material','color'];
+const STORE_KEY='metal-design-3d-projects-v2';
+function captureProject(){
+ return {application:'METAL DESIGN 3D',version:'2.5',mode,project:$('project').value,
+ dimensions:$('dimensions').checked,parameters:Object.fromEntries(projectFields.map(id=>[id,$(id).value])),
+ fieldOverrides:{...fieldOverrides},individualPostOffsets:{...individualPostOffsets}};
+}
+function applyProject(data){
+ if(!data||data.application!=='METAL DESIGN 3D'||!['railing','stairs'].includes(data.mode)||!data.parameters||typeof data.parameters!=='object'||Array.isArray(data.parameters))throw Error('Ungültige METAL DESIGN 3D-Projektdatei.');
+ const allowedFill=new Set(['vertical','horizontal','glass','frosted','perforated','mesh']);
+ for(const [id,value] of Object.entries(data.parameters)){
+  if(!projectFields.includes(id)||typeof value!=='string'&&typeof value!=='number')continue;
+  const el=$(id),v=String(value);
+  if(el.tagName==='SELECT'){if([...el.options].some(o=>o.value===v))el.value=v}
+  else if(el.type==='number'&&Number.isFinite(Number(v))&&v.trim()!=='')el.value=String(Math.max(Number(el.min)||-Infinity,Math.min(Number(el.max)||Infinity,Number(v))));
+ }
+ $('project').value=String(data.project||'Projekt').slice(0,80);$('viewProject').textContent=$('project').value;
+ $('dimensions').checked=data.dimensions!==false;
+ for(const k of Object.keys(fieldOverrides))delete fieldOverrides[k];
+ for(const k of Object.keys(individualPostOffsets))delete individualPostOffsets[k];
+ if(data.fieldOverrides&&typeof data.fieldOverrides==='object'&&!Array.isArray(data.fieldOverrides))
+ for(const [k,v] of Object.entries(data.fieldOverrides))if(/^\d+-\d+$/.test(k)&&allowedFill.has(v))fieldOverrides[k]=v;
+ if(data.individualPostOffsets&&typeof data.individualPostOffsets==='object'&&!Array.isArray(data.individualPostOffsets))
+ for(const [k,v] of Object.entries(data.individualPostOffsets))if(/^\d+-\d+$/.test(k)&&Number.isFinite(Number(v)))individualPostOffsets[k]=Math.max(-300,Math.min(300,Number(v)));
+ selectedPart=null;switchMode(data.mode);
+}
+function storedProjects(){
+ try{const obj=JSON.parse(localStorage.getItem(STORE_KEY)||'{}');return obj&&typeof obj==='object'&&!Array.isArray(obj)?obj:{}}catch{return {}}
+}
+function renderProjectList(selectKey=''){
+ const items=storedProjects(),sel=$('savedProjects');sel.replaceChildren(new Option('Projekt auswählen …',''));
+ for(const [key,entry] of Object.entries(items).sort((a,b)=>String(b[1].savedAt||'').localeCompare(String(a[1].savedAt||''))))
+ sel.add(new Option(`${entry.data?.project||'Projekt'} · ${entry.data?.mode==='stairs'?'Stiege':'Geländer'} · ${new Date(entry.savedAt).toLocaleDateString('de-AT')}`,key));
+ sel.value=selectKey in items?selectKey:'';
+}
+function projectNotice(msg){$('projectMessage').textContent=msg}
+$('storeProject').onclick=()=>{
+ try{
+  const items=storedProjects(),name=$('project').value.trim()||'Unbenanntes Projekt';
+  const key=$('savedProjects').value||`p-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+  items[key]={savedAt:new Date().toISOString(),data:{...captureProject(),project:name}};
+  localStorage.setItem(STORE_KEY,JSON.stringify(items));renderProjectList(key);projectNotice('Projekt lokal gespeichert.');
+ }catch(e){projectNotice('Speichern fehlgeschlagen: '+e.message)}
+};
+$('loadProject').onclick=()=>{
+ const entry=storedProjects()[$('savedProjects').value];
+ if(!entry){projectNotice('Bitte ein gespeichertes Projekt auswählen.');return}
+ try{applyProject(entry.data);projectNotice('Projekt geöffnet.')}catch(e){projectNotice('Laden fehlgeschlagen: '+e.message)}
+};
+$('deleteProject').onclick=()=>{
+ const key=$('savedProjects').value,items=storedProjects();
+ if(!key||!items[key]){projectNotice('Bitte ein Projekt auswählen.');return}
+ if(!confirm(`Projekt „${items[key].data?.project||'Projekt'}“ wirklich löschen?`))return;
+ try{delete items[key];localStorage.setItem(STORE_KEY,JSON.stringify(items));renderProjectList();projectNotice('Projekt gelöscht.')}catch(e){projectNotice('Löschen fehlgeschlagen: '+e.message)}
+};
+$('importProject').onclick=()=>$('importFile').click();
+$('importFile').addEventListener('change',async()=>{
+ const file=$('importFile').files?.[0];if(!file)return;
+ try{
+  if(file.size>1024*1024)throw Error('Datei ist größer als 1 MB.');
+  applyProject(JSON.parse(await file.text()));projectNotice('JSON-Projekt importiert. Zum dauerhaften Speichern „Projekt speichern“ wählen.');
+ }catch(e){projectNotice('Import fehlgeschlagen: '+e.message)}
+ finally{$('importFile').value=''}
+});
+$('config').onclick=()=>{
+ const data=captureProject(),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');
+ a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)
+};
+renderProjectList();
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(canvas);function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}rebuild();fit();resize();animate();
 </script></body></html>
