@@ -1,27 +1,19 @@
-# METAL DESIGN 3D – v1.2
+# METAL DESIGN 3D v1.3 – Eckgeländer
 
-Interaktiver 3D-Balkongeländer-Konfigurator für Kundenpräsentationen.
+3D-Konfigurator für gerade, L- und U-förmige Balkongeländer.
 
-## Start
-`index.html` im Browser über einen lokalen Webserver öffnen oder auf GitHub Pages bereitstellen. Three.js wird über CDN geladen, daher ist eine Internetverbindung erforderlich.
-
-## GitHub Pages
-1. `index.html` und `README.md` in das Stammverzeichnis deines Repositories hochladen.
-2. Unter **Settings → Pages** `Deploy from a branch`, `main`, `/(root)` auswählen.
-3. Auf die veröffentlichte URL warten und bei Bedarf den Browsercache aktualisieren.
+## Installation auf GitHub Pages
+1. `index.html` und `README.md` ins Hauptverzeichnis des Repositories hochladen.
+2. Unter Settings → Pages `Deploy from a branch`, `main`, `/(root)` aktivieren.
+3. Seite öffnen (Internet für Three.js CDN notwendig).
 
 ## Funktionen
-- 3D-Modell mit Maus/Touch drehen und zoomen
-- Senkrechte Stäbe, waagrechte Stäbe, Glasfüllung
-- Maße: Länge, Höhe, maximaler Pfostenabstand
-- Stahl, Edelstahl, Aluminium; RAL-Oberflächen
-- Rechteck- oder Rundhandlauf
-- Fußplatten aufgesetzt oder seitliche Befestigung
-- Projektbezeichnung, Frontansicht, automatische Gesamtansicht
-- PNG-Screenshot und JSON-Konfiguration exportieren
+- Gerade, L- und U-Form mit drei unabhängigen Seitenlängen
+- 3D-Kamera mit Drehen, Zoomen, Frontansicht und Gesamtansicht
+- Senkrechte/waagrechte Stäbe und Glas
+- Stahl, Edelstahl, Aluminium; mehrere RAL-Farben
+- Handlauf, Pfostenabstand, Geländerhöhe, Befestigung
+- PNG-Bild und JSON-Konfiguration exportieren
 
-## Hinweise
-Das Modell ist eine **unverbindliche Visualisierung**. Weder Statik, Geländerhöhe, Füllstab-Abstände, Glasdimensionierung noch Befestigung sind baurechtlich oder statisch geprüft. Profile sind schematisch. Nicht zur Fertigung freigeben.
-
-## Technik
-Eine HTML-Datei, Vanilla JavaScript, Three.js 0.160.1 mit OrbitControls über Import Map. Kein Buildprozess nötig.
+## Grenzen
+**Nur Kundenvisualisierung.** Eckpfosten können sich an den Stoßpunkten geometrisch überlagern. Keine konstruktive Eckverbindung, Glasbemessung, statische Berechnung oder Normprüfung. Nicht als Fertigungszeichnung verwenden.
