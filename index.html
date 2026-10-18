@@ -1,6 +1,6 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 1.5</title><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 1.7</title><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#edf3fb;background:#0c1523}*{box-sizing:border-box}body{margin:0}header{padding:15px 22px;border-bottom:1px solid #304158;display:flex;justify-content:space-between;align-items:center}h1{font-size:19px;margin:0}small,.muted{color:#aabbd0}main{display:grid;grid-template-columns:350px minmax(0,1fr);height:calc(100dvh - 67px)}aside{overflow:auto;padding:20px;background:#142235;border-right:1px solid #304158}label{display:block;margin:13px 0 6px;font-size:13px;color:#c9d5e6}input,select,button{width:100%;border:1px solid #3c526e;border-radius:8px;padding:11px;background:#1c3048;color:white;font:inherit}button{cursor:pointer;background:#2875db;border:0;font-weight:650;margin-top:10px}button.secondary{background:#304660}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #78b6ff}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{margin:18px 0;padding:13px;border:1px solid #415976;border-radius:9px;line-height:1.7;font-size:13px}.view{position:relative;min-height:350px}canvas{width:100%;height:100%;display:block;touch-action:none}.hint{position:absolute;bottom:16px;left:16px;background:#102137db;border:1px solid #425a73;border-radius:8px;padding:9px;font-size:12px;pointer-events:none}.tabs{display:flex;gap:8px}.tabs button{margin:0}.tabs button[aria-pressed="true"]{background:#2875db}.tabs button[aria-pressed="false"]{background:#304660}.hidden{display:none!important}#status{color:#ffb5b5;font-size:13px}h2{font-size:16px}fieldset{border:0;padding:0;margin:0}@media(max-width:800px){main{height:auto;grid-template-columns:1fr}aside{order:2}.view{height:53vh;min-height:340px}header{padding:12px}h1{font-size:17px}}
-</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v1.5</small></div><small>LIVE 3D</small></header><main><aside>
+</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v1.7</small></div><small>LIVE 3D</small></header><main><aside>
 <div class="tabs"><button id="tabR" aria-pressed="true" type="button">Geländer</button><button id="tabS" aria-pressed="false" type="button">Stiegen</button></div>
 <label for="project">Projekt / Kunde</label><input id="project" value="Musterprojekt" maxlength="80">
 <fieldset id="railing"><h2>Balkongeländer</h2>
@@ -9,12 +9,14 @@
 <div class="pair"><div><label for="side1">Seite B (mm)</label><input id="side1" type="number" min="500" max="12000" step="100" value="2500"></div><div><label for="side2">Seite C (mm)</label><input id="side2" type="number" min="500" max="12000" step="100" value="2500"></div></div>
 <label for="type">Füllung</label><select id="type"><option value="vertical">Senkrechte Stäbe</option><option value="horizontal">Waagrechte Stäbe</option><option value="glass">Glas</option></select>
 <label for="spacing">Max. Pfostenabstand (mm)</label><input id="spacing" type="number" min="400" max="2500" step="50" value="1000">
+<label for="postProfile">Pfostenprofil (mm)</label><select id="postProfile"><option value="40x40x2">40 × 40 × 2</option><option value="50x50x3">50 × 50 × 3</option><option value="60x40x3">60 × 40 × 3</option></select>
+<label for="handProfile">Handlaufprofil (mm)</label><select id="handProfile"><option value="60x40x3">60 × 40 × 3</option><option value="40x40x2">40 × 40 × 2</option><option value="50x30x2">50 × 30 × 2</option></select>
 <label for="mount">Befestigung</label><select id="mount"><option value="top">Aufgesetzt</option><option value="side">Seitlich</option></select>
 <label for="rail">Handlauf</label><select id="rail"><option value="square">Rechteck</option><option value="round">Rundrohr</option></select></fieldset>
 <fieldset id="stairs" class="hidden"><h2>Stiegengenerator</h2>
-<label for="stairShape">Stiegenform</label><select id="stairShape"><option value="straight">Gerade Stiege</option><option value="L">L-Stiege mit 90°-Podest</option></select>
+<label for="stairShape">Stiegenform</label><select id="stairShape"><option value="straight">Gerade Stiege</option><option value="L">L-Stiege mit 90°-Podest</option><option value="U">U-Stiege mit zwei 90°-Podesten</option></select>
 <div id="landingOptions" class="hidden"><div class="pair"><div><label for="lowerRis">Steigungen bis Podest</label><input id="lowerRis" type="number" min="2" max="25" step="1" value="8"></div><div><label for="landingDepth">Podesttiefe (mm)</label><input id="landingDepth" type="number" min="600" max="2500" step="50" value="1100"></div></div>
-<label for="turnDirection">Abbiegerichtung</label><select id="turnDirection"><option value="left">Links</option><option value="right">Rechts</option></select></div>
+<div id="uOptions" class="hidden"><label for="middleRis">Steigungen im mittleren Lauf</label><input id="middleRis" type="number" min="2" max="20" value="4" step="1"></div><label for="turnDirection">Abbiegerichtung</label><select id="turnDirection"><option value="left">Links</option><option value="right">Rechts</option></select></div>
 <div class="pair"><div><label for="rise">Geschosshöhe (mm)</label><input id="rise" type="number" min="800" max="5000" step="50" value="2800"></div><div><label for="stairWidth">Stiegenbreite (mm)</label><input id="stairWidth" type="number" min="600" max="1800" step="50" value="1000"></div></div>
 <div class="pair"><div><label for="tread">Auftritt (mm)</label><input id="tread" type="number" min="200" max="350" step="5" value="280"></div><div><label for="targetRiser">Ziel-Steigung (mm)</label><input id="targetRiser" type="number" min="140" max="210" step="5" value="175"></div></div>
 <label for="stepMaterial">Stufenmaterial</label><select id="stepMaterial"><option value="wood">Holz (Eiche)</option><option value="steel">Stahl</option></select>
@@ -23,7 +25,7 @@
 <p class="muted" style="font-size:12px">Stufenanzahl wird aus Geschosshöhe und Ziel-Steigung berechnet. Die obere Geschossfläche ist als Anschlusspunkt angenommen.</p></fieldset>
 <label for="material">Tragmaterial</label><select id="material"><option value="steel">Stahl</option><option value="stainless">Edelstahl</option><option value="aluminum">Aluminium</option></select>
 <label for="color">Farbe / Oberfläche</label><select id="color"><option value="7016">RAL 7016 – Anthrazit</option><option value="9005">RAL 9005 – Schwarz</option><option value="9016">RAL 9016 – Weiß</option><option value="7035">RAL 7035 – Lichtgrau</option><option value="inox">Edelstahloptik</option></select>
-<div id="summary" class="summary" aria-live="polite"></div>
+<div id="summary" class="summary" aria-live="polite"></div><div id="materials" class="summary" aria-live="polite"></div><button id="csv" class="secondary">Materialübersicht als CSV</button>
 <button id="fit">Gesamtansicht</button><button id="front" class="secondary">Vorderansicht</button><button id="reset" class="secondary">Perspektive</button><button id="save" class="secondary">PNG speichern</button><button id="config" class="secondary">JSON speichern</button>
 <p class="muted" style="font-size:12px;line-height:1.6">Nur schematische Kundenvisualisierung. Keine Statik, Normprüfung, Fertigungszeichnung oder verbindliche Materialberechnung.</p><p id="status" role="alert"></p></aside>
 <section class="view"><canvas id="scene" aria-label="Interaktives 3D-Modell"></canvas><div class="hint">Ziehen: drehen · Scrollen / zwei Finger: zoomen · Rechtsklick: verschieben</div></section></main>
@@ -41,10 +43,24 @@ function box(w,h,d,x,y,z,mat){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d
 function beam(a,b,w,d,mat){const v=new THREE.Vector3(...b).sub(new THREE.Vector3(...a)),m=box(w,v.length(),d,0,0,0,mat);m.position.copy(new THREE.Vector3(...a).add(new THREE.Vector3(...b)).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.normalize());return m}
 function clear(){for(const child of [...model.children]){model.remove(child);child.geometry?.dispose();} }
 function mats(){const colors={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2};return {metal:new THREE.MeshStandardMaterial({color:colors[$('color').value],metalness:$('material').value==='steel'?.65:.85,roughness:$('color').value==='inox'?.23:.36}),glass:new THREE.MeshPhysicalMaterial({color:0x9bc7dc,transparent:true,opacity:.37,roughness:.08,depthWrite:false,side:THREE.DoubleSide}),wood:new THREE.MeshStandardMaterial({color:0xb98652,roughness:.77})}}
+let bom=[];
+function addBom(label,count,lengthMm,kgPerM){bom.push({label,count,lengthMm,kg:count*lengthMm/1000*kgPerM})}
+function kgm(profile,mat){
+ const [w,d,t]=profile.split('x').map(Number),density=mat==='aluminum'?2700:mat==='stainless'?8000:7850;
+ return ((w*d-Math.max(0,w-2*t)*Math.max(0,d-2*t))*1e-6)*density;
+}
 function railing(m){const L=n('length',500,12000)/1000,H=n('height',700,1600)/1000,S=n('spacing',400,2500)/1000,shape=$('shape').value,B=shape==='straight'?0:n('side1',500,12000)/1000,C=shape==='U'?n('side2',500,12000)/1000:0;const runs=[[[-L/2,0],[L/2,0]]];if(B)runs.push([[L/2,0],[L/2,-B]]);if(C)runs.push([[L/2,-B],[L/2-C,-B]]);
-let postCount=0,panels=0;const positions=new Set();for(const [[ax,az],[bx,bz]] of runs){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const at=(t,y,offset=0)=>[ax+ux*t+perp[0]*offset,y,az+uz*t+perp[1]*offset];for(let i=0;i<=N;i++){const p=at(i*step,0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;box(.045,H,.045,p[0],H/2,p[2],m.metal);if($('mount').value==='top')box(.14,.014,.14,p[0],.007,p[2],m.metal);else box(.14,.14,.014,p[0],.12,p[2]-.065,m.metal)}
-const p0=at(0,H),p1=at(len,H);beam(p0,p1,$('rail').value==='round'?.056:.065,$('rail').value==='round'?.056:.065,m.metal);
+let postCount=0,panels=0;
+const pp=$('postProfile').value,hp=$('handProfile').value,[pw,pd]=pp.split('x').map(Number),[hw,hd]=hp.split('x').map(Number);
+const postWidth=pw/1000,postDepth=pd/1000;
+const positions=new Set();for(const [[ax,az],[bx,bz]] of runs){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const at=(t,y,offset=0)=>[ax+ux*t+perp[0]*offset,y,az+uz*t+perp[1]*offset];for(let i=0;i<=N;i++){const p=at(i*step,0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;box(postWidth,H,postDepth,p[0],H/2,p[2],m.metal);
+if($('mount').value==='top'){box(.15,.015,.15,p[0],.008,p[2],m.metal);for(const dx of [-.052,.052])for(const dz of [-.052,.052]){const bolt=box(.013,.009,.013,p[0]+dx,.020,p[2]+dz,m.metal);}}
+else {box(.15,.15,.016,p[0],.12,p[2]-.073,m.metal);for(const dx of [-.05,.05])for(const dy of [.07,.17])box(.014,.014,.012,p[0]+dx,dy,p[2]-.084,m.metal)}}
+const p0=at(0,H),p1=at(len,H);beam(p0,p1,$('rail').value==='round'?hw/1000:hw/1000,$('rail').value==='round'?hw/1000:hd/1000,m.metal);
 for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(start+end)/2,inner=Math.max(.02,end-start);if($('type').value==='vertical'){beam(at(start,.15),at(end,.15),.025,.025,m.metal);const count=Math.max(1,Math.ceil(inner/.11)-1);for(let j=1;j<=count;j++){const t=start+j*inner/(count+1);beam(at(t,.16),at(t,H-.06),.018,.018,m.metal)}}else if($('type').value==='horizontal'){for(let j=1;j<=5;j++){const y=.09+j*(H-.17)/6;beam(at(start,y),at(end,y),.018,.018,m.metal)}}else{const p=at(mid,H/2);const mesh=box(inner,H-.20,.012,...p,m.glass);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));beam(at(start,.12),at(end,.12),.025,.025,m.metal)}}}
+addBom('Pfosten RHS '+pp,postCount,H*1000,kgm(pp,$('material').value));
+addBom('Handlauf '+($('rail').value==='round'?'Rund (vereinfachte Gewichtsschätzung) ':'RHS ')+hp,1,(L+B+C)*1000,kgm(hp,$('material').value));
+addBom('Befestigungsplatten (Stück)',postCount,0,0);
 $('side1').disabled=shape==='straight';$('side2').disabled=shape!=='U';return `Grundriss: ${shape==='straight'?'Gerade':shape}<br>Seiten: A ${Math.round(L*1000)} mm${B?`, B ${Math.round(B*1000)} mm`:''}${C?`, C ${Math.round(C*1000)} mm`:''}<br>Gesamtlänge: ${Math.round((L+B+C)*1000)} mm<br>Höhe: ${Math.round(H*1000)} mm<br>Pfosten: ${postCount} · Felder: ${panels}`}
 function staircase(m){
 const height=n('rise',800,5000)/1000,width=n('stairWidth',600,1800)/1000,tread=n('tread',200,350)/1000,target=n('targetRiser',140,210)/1000;
@@ -52,9 +68,10 @@ const risers=Math.max(3,Math.round(height/target)),rise=height/risers,shape=$('s
 const stepMat=$('stepMaterial').value==='wood'?m.wood:m.metal;
 const sign=$('turnDirection').value==='left'?-1:1,landingDepth=n('landingDepth',600,2500)/1000;
 const lower=Math.min(risers-2,Math.max(2,Math.round(n('lowerRis',2,25))));
-const upper=risers-lower;
-$('landingOptions').classList.toggle('hidden',shape!=='L');
-$('lowerRis').max=String(risers-2);
+const middle=Math.max(2,Math.min(risers-lower-2,Math.round(n('middleRis',2,20))));
+const upper=shape==='U'?risers-lower-middle:risers-lower;
+$('landingOptions').classList.toggle('hidden',shape==='straight');$('uOptions').classList.toggle('hidden',shape!=='U');
+$('lowerRis').max=String(Math.max(2,risers-(shape==='U'?4:2)));$('middleRis').max=String(Math.max(2,risers-lower-2));
 const railSel=$('stairRail').value;
 let actualSteps=0;
 function flight({start,axis,count,firstRise,hasTopLanding}){
@@ -92,6 +109,23 @@ if(shape==='straight'){
  flight({start:[-length/2,0],axis:[1,0],count,firstRise:0,hasTopLanding:true});
  return `Form: Gerade Stiege<br>Geschosshöhe: ${Math.round(height*1000)} mm<br>Steigungen: ${risers} × ${(rise*1000).toFixed(1)} mm<br>Stufen: ${actualSteps} + obere Geschossfläche<br>Auftritt: ${Math.round(tread*1000)} mm<br>Lauflänge: ${Math.round(length*1000)} mm · Breite: ${Math.round(width*1000)} mm<br>Schrittmaß: ${((2*rise+tread)*1000).toFixed(0)} mm`;
 }
+if(shape==='U'){
+ const len1=(lower-1)*tread,len2=(middle-1)*tread,len3=(upper-1)*tread;
+ const origin=[-len1/2,0],corner1=origin[0]+len1;
+ flight({start:origin,axis:[1,0],count:lower,firstRise:0,hasTopLanding:true});
+ // Podest 1 verbindet den unteren und mittleren Lauf.
+ const p1x=corner1+landingDepth/2,p1z=sign*(landingDepth/2-width/2);
+ box(landingDepth,.10,Math.max(width,landingDepth),p1x,lower*rise-.05,p1z,stepMat);
+ const midStart=[corner1+landingDepth-width/2,sign*landingDepth/2];
+ flight({start:midStart,axis:[0,sign],count:middle,firstRise:lower,hasTopLanding:true});
+ // Podest 2 leitet den oberen Lauf parallel und entgegengesetzt zum unteren.
+ const endMid=[midStart[0],midStart[1]+sign*len2];
+ const p2x=endMid[0]-landingDepth/2+width/2,p2z=endMid[1]+sign*(landingDepth/2);
+ box(landingDepth,.10,Math.max(width,landingDepth),p2x,(lower+middle)*rise-.05,p2z,stepMat);
+ const upperStart=[endMid[0]-landingDepth+width/2,endMid[1]+sign*landingDepth];
+ flight({start:upperStart,axis:[-1,0],count:upper,firstRise:lower+middle,hasTopLanding:true});
+ return `Form: U-Stiege (${sign===-1?'links':'rechts'})<br>Geschosshöhe: ${Math.round(height*1000)} mm<br>Steigungen: ${risers} × ${(rise*1000).toFixed(1)} mm<br>Lauf 1: ${lower} Steigungen<br>Lauf 2: ${middle} Steigungen<br>Lauf 3: ${upper} Steigungen<br>Podeste: 2 × ${Math.round(landingDepth*1000)} mm (schematisch)<br>Stufen: ${actualSteps} + 2 Podeste + Geschossfläche<br>Breite: ${Math.round(width*1000)} mm · Schrittmaß: ${((2*rise+tread)*1000).toFixed(0)} mm<br><small>Podeste und Geländerübergänge sind eine Konzeptvisualisierung, nicht fertigungsreif.</small>`;
+}
 // Unterer Lauf: erste lower-1 Stufen, dann Podest als letzte Steigung.
 // Oberer Lauf: upper-1 Stufen, dann Geschossdecke.
 const lowerSteps=lower-1,upperSteps=upper-1,lowerLength=lowerSteps*tread,upperLength=upperSteps*tread;
@@ -103,13 +137,19 @@ const secondStart=[origin[0]+lowerLength+landingDepth-width/2,sign*(landingDepth
 flight({start:secondStart,axis:[0,sign],count:upper,firstRise:lower,hasTopLanding:true});
 return `Form: L-Stiege (${sign===-1?'links':'rechts'})<br>Geschosshöhe: ${Math.round(height*1000)} mm<br>Steigungen: ${risers} × ${(rise*1000).toFixed(1)} mm<br>Unterer Lauf: ${lower} Steigungen · ${lowerSteps} Stufen<br>Oberer Lauf: ${upper} Steigungen · ${upperSteps} Stufen<br>Podest: ${Math.round(landingDepth*1000)} mm (schematisch)<br>Gezeichnete Stufen: ${actualSteps} + Podest + Geschossfläche<br>Breite: ${Math.round(width*1000)} mm · Schrittmaß: ${((2*rise+tread)*1000).toFixed(0)} mm<br><small>Podestanschlüsse, Geländerübergänge und Stufenpositionen sind nur eine Entwurfsvisualisierung.</small>`;
 }
-function rebuild(){try{clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
+function rebuild(){try{bom=[];clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
+$('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
 function fit(front=false){const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());const r=Math.max(size.length(),1.5),distance=Math.min(95,r*1.7);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(front?0:distance*.55,front?0:distance*.42,distance));camera.near=.05;camera.far=250;camera.updateProjectionMatrix();controls.update()}
 function switchMode(next){mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
 $('tabR').onclick=()=>switchMode('railing');$('tabS').onclick=()=>switchMode('stairs');
-for(const el of document.querySelectorAll('aside input, aside select'))el.addEventListener('input',()=>{rebuild()});
+for(const el of document.querySelectorAll('aside input, aside select'))el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()});
 $('fit').onclick=()=>fit();$('front').onclick=()=>fit(true);$('reset').onclick=()=>fit(false);
 $('save').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`metal-design-3d-${mode}.png`;a.click()};
-$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','spacing','mount','rail']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail'];const data={application:'METAL DESIGN 3D',version:'1.5',mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+$('csv').onclick=()=>{
+ const rows=[['Position','Anzahl','Laenge_mm_je_Stueck','Profilgewicht_kg'],...bom.map(x=>[x.label,x.count,Math.round(x.lengthMm),x.kg.toFixed(2)])];
+ const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
+ const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-materialuebersicht.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+};
+$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','spacing','mount','rail','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail'];const data={application:'METAL DESIGN 3D',version:'1.7',mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(canvas);function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}rebuild();fit();resize();animate();
 </script></body></html>
