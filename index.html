@@ -5,7 +5,7 @@
 :root{--bg:#09121e;--panel:#101f30;--edge:#2d435d;--accent:#4ca5ff;--text:#edf4ff}
 body{background:var(--bg)}header{height:72px;background:#0d1a2a;border-color:var(--edge);padding:12px 24px;gap:16px}header h1{letter-spacing:.4px;font-weight:800;font-size:21px}header small{font-size:12px}main{height:calc(100dvh - 72px);grid-template-columns:minmax(310px,370px) minmax(0,1fr)}aside{background:var(--panel);padding:18px 18px 36px;scrollbar-color:#3b5874 transparent}aside>fieldset,aside>.summary,aside>details{border:1px solid var(--edge);border-radius:14px;padding:15px;background:#14263a;margin:12px 0}aside fieldset{margin-top:16px}aside h2{margin:0 0 12px;font-size:15px}input,select{background:#0e1d2e;border:1px solid #405771;border-radius:9px;min-height:42px}input:hover,select:hover{border-color:#6c93bd}button{border-radius:9px;min-height:40px;transition:filter .15s}button:hover{filter:brightness(1.15)}button:active{filter:brightness(.9)}.tabs{position:sticky;top:-18px;z-index:4;background:var(--panel);padding:6px 0 12px}.tabs button{min-height:44px}.view{overflow:hidden;background:#15283b}.view .hint{bottom:18px;left:18px;max-width:calc(100% - 36px)}.view-toolbar{position:absolute;z-index:5;top:16px;left:16px;right:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}.view-toolbar button{pointer-events:auto;width:auto;min-height:36px;margin:0;padding:9px 13px;background:#14263ce8;border:1px solid #486482;box-shadow:0 3px 15px #0003;font-size:12px}.view-toolbar button.primary{background:#2875db;border-color:#2875db}.view-toolbar .toolbar-spacer{flex:1}.view-title{position:absolute;z-index:3;left:18px;bottom:69px;pointer-events:none;background:#102137d9;border:1px solid #425a73;border-radius:9px;padding:10px 14px;font-size:12px}.view-title strong{font-size:14px;display:block}.presentation-note{display:none;position:absolute;bottom:16px;right:16px;max-width:380px;background:#0c1a2dd9;padding:11px 14px;border-radius:9px;color:#b8c9db;font-size:11px;pointer-events:none}body.presentation main{grid-template-columns:0 minmax(0,1fr)}body.presentation aside{display:none}body.presentation .presentation-note{display:block}body.presentation .view{min-height:0}body.presentation .view-toolbar button{background:#14263cf0}body.presentation #presentToggle{background:#2875db}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#89b7e5;margin:24px 0 8px;font-weight:800}#status{min-height:18px}
 @media(max-width:850px){header{height:65px;padding:10px 14px}main{height:auto;grid-template-columns:1fr}aside{order:2;max-height:none;padding:14px}.view{height:52dvh;min-height:360px;order:1}.view-toolbar{top:10px;left:10px;right:10px;gap:5px}.view-toolbar button{padding:8px 9px;font-size:11px}.view-title{left:10px;bottom:60px}.hint{font-size:11px}body.presentation main{height:calc(100dvh - 65px)}body.presentation .view{height:100%;min-height:0}body.presentation aside{display:none}}
-</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v3.2</small></div><small>3D KONFIGURATOR <span style="color:#61c9a9">● LIVE</span></small></header><main><aside>
+</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v3.8</small></div><small>3D KONFIGURATOR <span style="color:#61c9a9">● LIVE</span></small></header><main><aside>
 <div class="tabs"><button id="tabR" aria-pressed="true" type="button">Geländer</button><button id="tabS" aria-pressed="false" type="button">Stiegen</button></div>
 <section class="summary"><strong>Projektverwaltung</strong><small style="display:block">Lokal im aktuellen Browser speichern oder als JSON-Datei übertragen.</small>
 <label for="savedProjects">Gespeicherte Projekte</label><select id="savedProjects"><option value="">Projekt auswählen …</option></select>
@@ -29,7 +29,11 @@ body{background:var(--bg)}header{height:72px;background:#0d1a2a;border-color:var
 <div class="pair"><button id="applyPart" type="button">Bauteil ändern</button><button id="resetPart" class="secondary" type="button">Bauteil zurücksetzen</button></div>
 <label style="display:flex;align-items:center;gap:8px"><input id="dragPosts" type="checkbox" checked style="width:auto;min-height:auto"> Pfosten mit Maus/Finger verschieben</label>
 <small>Pfosten antippen oder anklicken, dann ziehen. Eck- und Endpfosten sind gesperrt. Zum Drehen freie Fläche benutzen.</small>
-<div id="selectedPart" class="summary" aria-live="polite">Noch kein Bauteil ausgewählt.</div>
+<div id="selectedPart" class="summary" aria-live="polite">Noch kein Bauteil ausgewählt.</div><div class="summary"><strong>Bauteilliste · Editor 3.6</strong><br><small>Ein Bauteil aus der Liste auswählen, im 3D-Modell hervorheben und dessen Maße prüfen.</small></div>
+<label for="componentFilter">Bauteile filtern</label><select id="componentFilter"><option value="all">Alle Bauteile</option><option value="post">Nur Pfosten</option><option value="field">Nur Geländerfelder</option></select>
+<label for="componentList">Bauteilliste</label><select id="componentList" size="7" style="min-height:160px"><option value="">Geländer erstellen …</option></select>
+<div id="componentDetails" class="summary" aria-live="polite">Bauteil auswählen, um Maße zu sehen.</div>
+<div class="pair"><button id="componentFocus" class="secondary" type="button">Bauteil zentrieren</button><button id="componentExport" class="secondary" type="button">Bauteilliste CSV</button></div>
 <label for="fieldSelect">Einzelfeld bearbeiten</label><select id="fieldSelect"><option value="all">Alle Felder</option></select>
 <div class="summary"><strong>Einzelrahmen-Konfigurator</strong><br><small>Jedes Feld kann einen eigenen Rahmen und eigene Füllstäbe erhalten.</small></div>
 <label for="fieldFrameMode">Rahmen für ausgewähltes Feld</label><select id="fieldFrameMode"><option value="default">Projektvorgabe</option><option value="yes">Geschlossener Rahmen</option><option value="no">Ohne Seitenrahmen</option></select>
@@ -59,7 +63,16 @@ body{background:var(--bg)}header{height:72px;background:#0d1a2a;border-color:var
 <label for="frameInset">Rahmenrücksprung vom Pfosten (mm)</label><input id="frameInset" type="number" min="20" max="100" step="5" value="45">
 <label for="barGap">Füllstab-Raster (mm)</label><input id="barGap" type="number" min="50" max="250" step="5" value="110"><label for="spacing">Max. Pfostenabstand (mm)</label><input id="spacing" type="number" min="400" max="2500" step="50" value="1000">
 <label for="postProfile">Pfostenprofil (mm)</label><select id="postProfile"><option value="40x40x2">40 × 40 × 2</option><option value="50x50x3">50 × 50 × 3</option><option value="60x40x3">60 × 40 × 3</option></select>
+<label for="handEnd">Handlaufabschluss</label><select id="handEnd"><option value="flat">Flache Endkappe</option><option value="rounded">Abgerundete Endkappe</option><option value="open">Offenes Profil (Darstellung)</option><option value="down">Nach unten gebogener Abschluss (schematisch)</option></select>
+<label for="cornerJoint">Eckverbindung</label><select id="cornerJoint"><option value="miter">45°-Gehrung (schematisch)</option><option value="connector">Eckverbinder</option><option value="round">Abgerundete Ecke</option></select>
+<label for="cutAllowance">Zuschnitt-Zugabe je Teil (mm)</label><input id="cutAllowance" type="number" min="0" max="20" value="2" step="1">
+<button id="cutCsv" class="secondary" type="button">Zuschnittliste als CSV</button>
 <label for="handProfile">Handlaufprofil (mm)</label><select id="handProfile"><option value="60x40x3">60 × 40 × 3</option><option value="40x40x2">40 × 40 × 2</option><option value="50x30x2">50 × 30 × 2</option></select>
+<label for="plateSize">Fußplatte (mm)</label><select id="plateSize"><option value="120">120 × 120</option><option value="150" selected>150 × 150</option><option value="180">180 × 180</option><option value="200">200 × 200</option></select>
+<label for="plateThickness">Plattenstärke (mm)</label><select id="plateThickness"><option value="8">8</option><option value="10" selected>10</option><option value="12">12</option><option value="15">15</option></select>
+<label for="anchorSize">Anker / Schrauben</label><select id="anchorSize"><option value="M8">M8</option><option value="M10" selected>M10</option><option value="M12">M12</option><option value="M16">M16</option></select>
+<label for="anchorLayout">Schrauben je Platte</label><select id="anchorLayout"><option value="2">2 Stück</option><option value="4" selected>4 Stück</option></select>
+<label for="wallBracket">Wandhalter</label><select id="wallBracket"><option value="no">Keine</option><option value="left">Am Anfang</option><option value="right">Am Ende</option><option value="both">An beiden Enden</option></select>
 <label for="mount">Befestigung</label><select id="mount"><option value="top">Aufgesetzt</option><option value="side">Seitlich</option></select>
 <label for="glassMount">Glasbefestigung</label><select id="glassMount"><option value="clamps">Glasklemmen</option><option value="frame">Rahmenprofile</option></select>
 <label for="rail">Handlauf</label><select id="rail"><option value="square">Rechteck</option><option value="round">Rundrohr</option></select></fieldset>
@@ -81,9 +94,14 @@ body{background:var(--bg)}header{height:72px;background:#0d1a2a;border-color:var
 <label for="stairRail">Stiegengeländer</label><select id="stairRail"><option value="both">Beidseitig</option><option value="left">Links</option><option value="right">Rechts</option><option value="none">Ohne</option></select>
 <p class="muted" style="font-size:12px">Stufenanzahl wird aus Geschosshöhe und Ziel-Steigung berechnet. Die obere Geschossfläche ist als Anschlusspunkt angenommen.</p></fieldset>
 <label for="renderQuality">Darstellungsqualität</label><select id="renderQuality"><option value="balanced">Standard</option><option value="high">Hoch (mehr Details)</option></select>
-<label for="surfaceFinish">Metalloberfläche</label><select id="surfaceFinish"><option value="powder">Pulverbeschichtet / matt</option><option value="satin">Seidenmatt</option><option value="polished">Poliert</option></select>
+<div class="section-title">Material-Editor PRO</div>
+<label for="finishPreset">Oberflächen-Vorlage</label><select id="finishPreset"><option value="custom">Individuell</option><option value="powder7016">Pulverbeschichtet · RAL 7016</option><option value="powder9005">Pulverbeschichtet · RAL 9005</option><option value="inoxBrushed">Edelstahl · geschliffen</option><option value="inoxPolished">Edelstahl · hochglanzpoliert</option><option value="galvanized">Stahl · feuerverzinkt</option><option value="aluminum">Aluminium · natur eloxiert (optisch)</option></select>
+<label for="surfaceFinish">Metalloberfläche</label><select id="surfaceFinish"><option value="powder">Pulverbeschichtet / matt</option><option value="satin">Seidenmatt</option><option value="polished">Poliert</option><option value="brushed">Geschliffen / gebürstet</option><option value="galvanized">Feuerverzinkt (schematisch)</option></select>
+<label for="surfaceRoughness">Oberflächenrauheit</label><input id="surfaceRoughness" type="range" min="10" max="90" value="55" step="5"><small>10 = glänzend · 90 = sehr matt</small>
+<label for="brushDirection">Schliffrichtung</label><select id="brushDirection"><option value="length">Längsschliff</option><option value="cross">Querschliff</option></select>
+<label for="finishInfo">Materialhinweis</label><div id="finishInfo" class="summary" aria-live="polite">Die Oberfläche wird für die 3D-Vorschau angenähert.</div>
 <label for="environment">3D-Umgebung</label><select id="environment"><option value="studio">Studio – Dunkel</option><option value="bright">Studio – Hell</option><option value="outdoor">Außenbereich – Tageslicht</option></select><label for="material">Tragmaterial</label><select id="material"><option value="steel">Stahl</option><option value="stainless">Edelstahl</option><option value="aluminum">Aluminium</option></select>
-<label for="color">Farbe / Oberfläche</label><select id="color"><option value="7016">RAL 7016 – Anthrazit</option><option value="9005">RAL 9005 – Schwarz</option><option value="9016">RAL 9016 – Weiß</option><option value="7035">RAL 7035 – Lichtgrau</option><option value="inox">Edelstahloptik</option><option value="brushed">Edelstahl gebürstet</option></select>
+<label for="color">Farbe / Oberfläche</label><select id="color"><option value="7016">RAL 7016 – Anthrazit</option><option value="9005">RAL 9005 – Schwarz</option><option value="9016">RAL 9016 – Weiß</option><option value="7035">RAL 7035 – Lichtgrau</option><option value="inox">Edelstahloptik</option><option value="brushed">Edelstahl gebürstet</option><option value="9006">RAL 9006 – Weißaluminium</option><option value="9007">RAL 9007 – Graualuminium</option><option value="7021">RAL 7021 – Schwarzgrau</option><option value="7037">RAL 7037 – Staubgrau</option><option value="8017">RAL 8017 – Schokoladenbraun</option><option value="6005">RAL 6005 – Moosgrün</option><option value="5010">RAL 5010 – Enzianblau</option><option value="3000">RAL 3000 – Feuerrot</option></select>
 <div id="summary" class="summary" aria-live="polite"></div><div id="materials" class="summary" aria-live="polite"></div><button id="csv" class="secondary">Materialübersicht als CSV</button>
 <label for="dimensionMode">Bemaßungstyp</label><select id="dimensionMode"><option value="overall">Gesamtmaße</option><option value="fields">Feldbreiten und Pfostenabstände</option><option value="both">Alle Maße</option><option value="selected">Nur ausgewähltes Feld / Pfosten</option></select>
 <label style="display:flex;align-items:center;gap:9px"><input id="dimensions" type="checkbox" checked style="width:auto"> 3D-Bemaßung anzeigen</label>
@@ -157,15 +175,49 @@ function woodTexture(species){
  texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
  textureCache.set(species,texture);return texture;
 }
+const metalPalette={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2,'brushed':0xb8c1ca,'9006':0xa5a8a9,'9007':0x777b7e,'7021':0x25292b,'7037':0x7e8387,'8017':0x45302a,'6005':0x123a30,'5010':0x124b83,'3000':0x9c2327};
+const finishPresets={powder7016:{material:'steel',color:'7016',surfaceFinish:'powder',surfaceRoughness:'65'},powder9005:{material:'steel',color:'9005',surfaceFinish:'powder',surfaceRoughness:'65'},inoxBrushed:{material:'stainless',color:'brushed',surfaceFinish:'brushed',surfaceRoughness:'40'},inoxPolished:{material:'stainless',color:'inox',surfaceFinish:'polished',surfaceRoughness:'12'},galvanized:{material:'steel',color:'9007',surfaceFinish:'galvanized',surfaceRoughness:'65'},aluminum:{material:'aluminum',color:'9006',surfaceFinish:'satin',surfaceRoughness:'35'}};
+let metalTextureCache=new Map();
+function metalTexture(kind,direction){
+ const key=kind+'-'+direction;if(metalTextureCache.has(key))return metalTextureCache.get(key);
+ const el=document.createElement('canvas');el.width=256;el.height=256;const c=el.getContext('2d');const data=c.createImageData(256,256);
+ // Deterministic procedural preview, no external texture downloads.
+ let seed=kind==='galvanized'?89123:67241;const rnd=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296};
+ const lines=Array.from({length:256},()=>rnd());
+ for(let y=0;y<256;y++)for(let x=0;x<256;x++){
+  const idx=(y*256+x)*4;const coord=direction==='length'?x:y;
+  const grain=kind==='brushed'?(lines[coord]-.5)*46+(rnd()-.5)*9:(rnd()-.5)*32+Math.sin((x+y*.65)/17)*9;
+  const v=Math.max(90,Math.min(245,190+grain));data.data[idx]=v;data.data[idx+1]=v;data.data[idx+2]=v;data.data[idx+3]=255;
+ }
+ c.putImageData(data,0,0);const t=new THREE.CanvasTexture(el);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());metalTextureCache.set(key,t);return t;
+}
 function mats(){
- const colors={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2,'brushed':0xb8c1ca};
  const surface=$('surfaceFinish').value,metalType=$('material').value;
- const metal=new THREE.MeshStandardMaterial({color:colors[$('color').value]||0x383e47,metalness:surface==='powder'?.42:.78,roughness:surface==='polished'?.16:surface==='satin'?.32:.58});
+ const rough=n('surfaceRoughness',10,90)/100;
+ const opts={color:metalPalette[$('color').value]??0x383e47,metalness:surface==='powder'?.42:metalType==='aluminum'?.72:.84,roughness:rough};
+ if(surface==='brushed'||surface==='galvanized'){
+  opts.map=metalTexture(surface,$('brushDirection').value);
+  // Keep the selected RAL / metallic base visible beneath the texture.
+  opts.color=metalPalette[$('color').value]??0xa9b5c2;
+ }
+ const metal=new THREE.MeshStandardMaterial(opts);
  const glass=new THREE.MeshPhysicalMaterial({color:0xb8e2f1,metalness:0,roughness:.08,transparent:true,opacity:.32,side:THREE.DoubleSide,depthWrite:false,clearcoat:1,clearcoatRoughness:.04});
  const frosted=new THREE.MeshPhysicalMaterial({color:0xd7e9eb,roughness:.82,transparent:true,opacity:.78,side:THREE.DoubleSide,depthWrite:false});
  const wood=new THREE.MeshStandardMaterial({map:woodTexture('oak'),roughness:.72});
  return {metal,glass,frosted,wood};
 }
+function refreshFinishInfo(){
+ const kind=$('surfaceFinish').value,metal=$('material').value;
+ const notes={powder:'Pulverbeschichtung: vereinfachte matte Farbdarstellung.',satin:'Seidenmatt: reduzierter Glanz.',polished:'Poliert: spiegelnde Materialwirkung ohne echte Umgebungsreflexionskarte.',brushed:'Geschliffen: prozedurale, richtungsabhängige Textur.',galvanized:'Feuerverzinkt: schematische Zinkstruktur; keine echte Zinkschichtdicke.'};
+ $('finishInfo').textContent=`${notes[kind]} · Grundmaterial: ${metal==='steel'?'Stahl':metal==='stainless'?'Edelstahl':'Aluminium'}. RAL-Farben sind Bildschirmnäherungen.`;
+}
+$('finishPreset').addEventListener('change',()=>{
+ const p=finishPresets[$('finishPreset').value];if(!p)return;
+ for(const [id,value] of Object.entries(p))$(id).value=value;
+ refreshFinishInfo();rebuild();
+});
+for(const id of ['surfaceFinish','material','color','surfaceRoughness','brushDirection'])$(id).addEventListener('input',()=>{if($('finishPreset').value!=='custom')$('finishPreset').value='custom';refreshFinishInfo()});
+refreshFinishInfo();
 let bom=[];
 const pickGroup=new THREE.Group();scene.add(pickGroup);
 const selectionGroup=new THREE.Group();scene.add(selectionGroup);
@@ -179,6 +231,7 @@ function updateSelectionHighlight(){
 }
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 let selectedPart=null;
+let components=[];
 const individualPostOffsets={};
 const partOverrides={};
 function partMaterial(key,fallback){
@@ -223,11 +276,13 @@ function kgm(profile,mat){
  const [w,d,t]=profile.split('x').map(Number),density=mat==='aluminum'?2700:mat==='stainless'?8000:7850;
  return ((w*d-Math.max(0,w-2*t)*Math.max(0,d-2*t))*1e-6)*density;
 }
-function railing(m){fieldMetadata=[];const L=n('length',500,12000)/1000,H=n('height',700,1600)/1000,S=n('spacing',400,2500)/1000,shape=$('shape').value,B=shape==='straight'?0:n('side1',500,12000)/1000,C=shape==='U'?n('side2',500,12000)/1000:0;const runs=[[[-L/2,0],[L/2,0]]];if(B)runs.push([[L/2,0],[L/2,-B]]);if(C)runs.push([[L/2,-B],[L/2-C,-B]]);
-let postCount=0,panels=0;
+let cuts=[];function addCut(name,profile,length,qty=1,remark="Geradschnitt"){if(length>0)cuts.push({name,profile,length:Math.round(length),qty,remark})}
+function railing(m){fieldMetadata=[];components=[];const L=n('length',500,12000)/1000,H=n('height',700,1600)/1000,S=n('spacing',400,2500)/1000,shape=$('shape').value,B=shape==='straight'?0:n('side1',500,12000)/1000,C=shape==='U'?n('side2',500,12000)/1000:0;const runs=[[[-L/2,0],[L/2,0]]];if(B)runs.push([[L/2,0],[L/2,-B]]);if(C)runs.push([[L/2,-B],[L/2-C,-B]]);
+let postCount=0,panels=0;const allowance=n('cutAllowance',0,20);
 const pp=$('postProfile').value,hp=$('handProfile').value,[pw,pd]=pp.split('x').map(Number),[hw,hd]=hp.split('x').map(Number);
 const postWidth=pw/1000,postDepth=pd/1000;
 const topY=H-n('topRailDrop',60,250)/1000,bottomY=n('bottomRailRise',80,400)/1000;
+if(topY-bottomY<.20)throw Error('Obergurt und Untergurt benötigen mindestens 200 mm Höhenabstand. Bitte Abstände korrigieren.');
 const positions=new Set();for(const [sideIndex,[[ax,az],[bx,bz]]] of runs.entries()){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const postOffset=n('postOffset',-300,300)/1000;
 const postAt=i=>{
  if(i===0||i===N)return i*step;
@@ -245,7 +300,7 @@ if($('dimensions').checked){
    const off=.24+(j%2)*.16;
    dimLine(at(a,-off,.22),at(b,-off,.22),`${Math.round((b-a)*1000)} mm Achsmaß`);
    if(showFieldDimensions()||(selectedDimensions()&&selectedKey===key))
-    dimLine(at(a+.045,-off-.18,.22),at(b-.045,-off-.18,.22),`${Math.max(0,Math.round((b-a-.09)*1000))} mm licht`);
+    dimLine(at(a+.045,-off-.18,.22),at(b-.045,-off-.18,.22),`${Math.max(0,Math.round((b-a-postWidth)*1000))} mm licht (Pfosten)`);
   }
  }
  if(selectedDimensions()&&selectedPart?.kind==='post'){
@@ -259,34 +314,79 @@ if($('dimensions').checked){
 }
 for(let i=0;i<=N;i++){const p=at(postAt(i),0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;
 const postKey=`${sideIndex}-${i}`,postProfile=partOverrides[postKey]?.profile||pp;
+components.push({kind:'post',key:postKey,name:`Seite ${String.fromCharCode(65+sideIndex)} · Pfosten ${i+1}`,profile:postProfile,lengthMm:Math.round(H*1000),position:at(postAt(i),H/2),detail:`Höhe ${Math.round(H*1000)} mm · Profil ${postProfile} · ${$('mount').value==='side'?'Seitenmontage':'Fußmontage'}`});
 const [customW,customD]=postProfile.split('x').map(Number);
+addCut('Pfosten',postProfile,H*1000+allowance);
 const postMat=partMaterial(postKey,m.metal);
 box(customW/1000,H,customD/1000,p[0],H/2,p[2],postMat);
 pickSurface([p[0],H/2,p[2]],Math.max(.12,postWidth*2),H,Math.max(.12,postDepth*2),{kind:'post',key:`${sideIndex}-${i}`,side:sideIndex,index:i,count:N,origin:[ax,az],axis:[ux,uz],step,base:i*step,center:postAt(i)});
-if($('mount').value==='top'){box(.15,.015,.15,p[0],.008,p[2],m.metal);for(const dx of [-.052,.052])for(const dz of [-.052,.052]){const bolt=box(.013,.009,.013,p[0]+dx,.020,p[2]+dz,m.metal);}}
-else {box(.15,.15,.016,p[0],.12,p[2]-.073,m.metal);for(const dx of [-.05,.05])for(const dy of [.07,.17])box(.014,.014,.012,p[0]+dx,dy,p[2]-.084,m.metal)}}
+const plate=n('plateSize',120,200)/1000,thick=n('plateThickness',8,15)/1000;
+const boltRadius=({M8:.004,M10:.005,M12:.006,M16:.008})[$('anchorSize').value]||.005;
+const boltCount=Number($('anchorLayout').value),sideMount=$('mount').value==='side';
+if(!sideMount){
+ box(plate,thick,plate,p[0],thick/2,p[2],m.metal);
+ const offset=plate*.34;
+ const boltPoints=boltCount===2?[[-offset,0],[offset,0]]:[[-offset,-offset],[-offset,offset],[offset,-offset],[offset,offset]];
+ for(const [dx,dz] of boltPoints){const b=new THREE.Mesh(new THREE.CylinderGeometry(boltRadius*1.65,boltRadius*1.65,.008,12),m.metal);b.position.set(p[0]+dx,thick+.004,p[2]+dz);model.add(b);
+ const shaft=new THREE.Mesh(new THREE.CylinderGeometry(boltRadius,boltRadius,.016,10),m.metal);shaft.position.set(p[0]+dx,thick+.012,p[2]+dz);model.add(shaft)}
+}else{
+ const plateZ=p[2]-plate/2;
+ box(plate,plate,thick,p[0],plate/2,plateZ,m.metal);
+ const offset=plate*.32;
+ const boltPoints=boltCount===2?[[-offset,0],[offset,0]]:[[-offset,-offset],[-offset,offset],[offset,-offset],[offset,offset]];
+ for(const [dx,dy] of boltPoints){const b=new THREE.Mesh(new THREE.CylinderGeometry(boltRadius*1.6,boltRadius*1.6,.009,12),m.metal);b.rotation.x=Math.PI/2;b.position.set(p[0]+dx,plate/2+dy,plateZ-thick/2-.005);model.add(b)}
+ const spacer=box(customW/1000,.055,plate*.24,p[0],.10,p[2]-plate*.22,m.metal);
+}
+addCut('Befestigungsplatte',`${Math.round(plate*1000)}×${Math.round(plate*1000)}×${Math.round(thick*1000)}`,0,1,sideMount?'Seitenmontage':'Fußmontage');
+addCut('Anker',$('anchorSize').value,0,boltCount,'Länge und Untergrund bauseits prüfen');
+}
+const wall=$('wallBracket').value;
+for(const [t,which] of [[0,'left'],[len,'right']]){
+ if(wall===which||wall==='both'){
+  const wp=at(t,H-.13);
+  box(.12,.12,.012,wp[0],wp[1],wp[2]-.08,m.metal);
+  beam(wp,[wp[0],wp[1],wp[2]-.075],.035,.035,m.metal);
+  for(const dx of [-.036,.036])for(const dy of [-.036,.036]){
+   const bolt=box(.014,.014,.01,wp[0]+dx,wp[1]+dy,wp[2]-.09,m.metal);
+  }
+  addCut('Wandhalter','120×120',0,1,'Untergrund und Befestigung prüfen');
+ }
+}
 const p0=at(0,H),p1=at(len,H);
 if($('rail').value==='round')roundBeam(p0,p1,hw/2000,m.metal);
 else beam(p0,p1,hw/1000,hd/1000,m.metal);
-for(let i=0;i<N;i++){panels++;const inset=n('frameInset',20,100)/1000,start=postAt(i)+inset,end=postAt(i+1)-inset,fieldKey=`${sideIndex}-${i}`,fieldType=selectedFieldType(fieldKey);
+addCut('Handlauf',hp,len*1000+allowance,1,runs.length>1?'Eckanschluss prüfen':'Endschnitt');
+for(const t of [0,len]){
+ const p=at(t,H),capMode=$('handEnd').value;
+ if(capMode==='flat')box(hw/1000,.008,hd/1000,...p,m.metal);
+ if(capMode==='rounded'){const cap=new THREE.Mesh(new THREE.SphereGeometry(Math.max(hw,hd)/2200,12,8),m.metal);cap.position.set(...p);model.add(cap)}
+ if(capMode==='down')beam(p,at(t,H-.085),hw/1000,hd/1000,m.metal);
+}
+
+for(let i=0;i<N;i++){panels++;const inset=n('frameInset',20,100)/1000,start=postAt(i)+Math.min(inset,(postAt(i+1)-postAt(i))*.25),end=postAt(i+1)-Math.min(inset,(postAt(i+1)-postAt(i))*.25),fieldKey=`${sideIndex}-${i}`,fieldType=selectedFieldType(fieldKey);
 fieldMetadata.push({key:fieldKey,side:String.fromCharCode(65+sideIndex),index:i+1,length:Math.max(.02,end-start)});
+components.push({kind:'field',key:fieldKey,name:`Seite ${String.fromCharCode(65+sideIndex)} · Feld ${i+1}`,profile:selectedFieldType(fieldKey),lengthMm:Math.round((postAt(i+1)-postAt(i))*1000),position:at((start+end)/2,H/2),detail:`Achsmaß ${Math.round((postAt(i+1)-postAt(i))*1000)} mm · Rahmenfeld ca. ${Math.max(0,Math.round((end-start)*1000))} mm · Füllung ${selectedFieldType(fieldKey)}`});
 const center=at((start+end)/2,H/2);
 pickSurface(center,Math.abs(ux)*Math.max(.05,end-start)+.10,H-.12,Math.abs(uz)*Math.max(.05,end-start)+.10,{kind:'field',key:fieldKey});
 const fieldMat=partMaterial(fieldKey,m.metal);
+if($('topRailMode').value==='yes')addCut('Obergurt Feld', $('topRailProfile').value,(end-start)*1000+allowance);
+if($('bottomRailMode').value==='yes')addCut('Untergurt Feld', $('bottomRailProfile').value,(end-start)*1000+allowance);
 const mid=(start+end)/2,inner=Math.max(.02,end-start);
 const upper=$('topRailMode').value==='yes'?topY:H-.07;
 const lower=$('bottomRailMode').value==='yes'?bottomY:.12;
-const fillBottom=Math.min(upper-.10,lower+.035),fillTop=Math.max(fillBottom+.06,upper-.035);
+const fillBottom=lower+.035,fillTop=upper-.035;
+if(fillTop-fillBottom<.12)throw Error('Zu wenig Platz für die Füllung zwischen Ober- und Untergurt.');
 const frameSetting=fieldFrameOverrides[fieldKey]||{};
 const frameProfile=frameSetting.profile||$('frameProfile').value;
 const [frameW,frameD]=frameProfile.split('x').map(Number);
 const sideFrame=(frameSetting.mode||$('frameMode').value)==='yes';
-if(sideFrame){
+if(sideFrame){addCut('Seitlicher Rahmen',frameProfile,(upper-lower)*1000+allowance,2);
   for(const t of [start,end])beam(at(t,lower),at(t,upper),frameW/1000,frameD/1000,fieldMat);
 }
 const fillStart=sideFrame?start+frameW/2000+.006:start;
 const fillEnd=sideFrame?end-frameW/2000-.006:end;
 const usable=Math.max(.02,fillEnd-fillStart);
+if(fillEnd<=fillStart)throw Error('Rahmenprofil zu breit für dieses Feld. Bitte Feldbreite oder Rahmenprofil anpassen.');
 const infill=frameSetting.infill||$('infillProfile').value;
 function infillBeam(a,b){
   if(infill.startsWith('round'))roundBeam(a,b,Number(infill.slice(5))/2000,fieldMat);
@@ -298,7 +398,7 @@ for(const y of [topY,bottomY]){
  if((y===topY&&$('topRailMode').value==='no')||(y===bottomY&&$('bottomRailMode').value==='no'))continue;
  for(const t of [start,end])box(.045,.045,.045,...at(t,y),fieldMat);
 }
-if(fieldType==='vertical'){const count=Math.max(1,Math.ceil(usable/(n('barGap',50,250)/1000))-1);for(let j=1;j<=count;j++){const t=fillStart+j*usable/(count+1);infillBeam(at(t,fillBottom),at(t,fillTop))}}else if(fieldType==='horizontal'){for(let j=1;j<=5;j++){const y=fillBottom+j*(fillTop-fillBottom)/6;infillBeam(at(fillStart,y),at(fillEnd,y))}}else if(['glass','frosted'].includes(fieldType)){
+if(fieldType==='vertical'){const count=Math.max(1,Math.ceil(usable/(n('barGap',50,250)/1000))-1);for(let j=1;j<=count;j++){const t=fillStart+j*usable/(count+1);infillBeam(at(t,fillBottom),at(t,fillTop));addCut('Füllstab',infill,(fillTop-fillBottom)*1000+allowance)}}else if(fieldType==='horizontal'){for(let j=1;j<=5;j++){const y=fillBottom+j*(fillTop-fillBottom)/6;infillBeam(at(fillStart,y),at(fillEnd,y));addCut('Querstab',infill,usable*1000+allowance)}}else if(['glass','frosted'].includes(fieldType)){
  const p=at(mid,(fillTop+fillBottom)/2);const mesh=box(usable,fillTop-fillBottom,.012,...p,fieldType==='frosted'?m.frosted:m.glass);
  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));
  if($('glassMount').value==='frame'){
@@ -331,8 +431,13 @@ if(fieldType==='vertical'){const count=Math.max(1,Math.ceil(usable/(n('barGap',5
 }}}
 for(let i=1;i<runs.length;i++){
  const corner=runs[i][0];
+ const joint=$('cornerJoint').value;
+ if(joint==='round'){
  const cap=new THREE.Mesh(new THREE.SphereGeometry($('rail').value==='round'?hw/2000:Math.max(hw,hd)/2200,12,8),m.metal);
  cap.position.set(corner[0],H,corner[1]);cap.castShadow=true;model.add(cap);
+ }else if(joint==='connector')box(hw/1000*1.2,hd/1000*1.2,hw/1000*1.2,corner[0],H,corner[1],m.metal);
+ else {const cap=box(hw/1000,hd/1000,hw/1000,corner[0],H,corner[1],m.metal);cap.rotation.y=Math.PI/4}
+ addCut('Eckanschluss Handlauf',hp,0,1,joint==='miter'?'Gehrung: Winkel prüfen':joint==='connector'?'Eckverbinder':'Rundanschluss');
 }
 refreshFieldList();showSelection();dimRailing(L,H,B,C);
 if($('topRailMode').value==='yes')addBom('Obergurt RHS '+$('topRailProfile').value,1,(L+B+C)*1000,kgm($('topRailProfile').value,$('material').value));
@@ -478,10 +583,35 @@ function updateEnvironment(){
  grid.visible=env!=='outdoor';
 }
 let activeMaterials=[];
+function refreshComponentList(){
+ const list=$('componentList'),filter=$('componentFilter').value,previous=list.value;
+ list.replaceChildren();
+ if(mode!=='railing'){list.add(new Option('Bauteilliste für Geländer verfügbar',''));$('componentDetails').textContent='Zur Geländeransicht wechseln.';return}
+ for(const item of components){if(filter!=='all'&&item.kind!==filter)continue;list.add(new Option(`${item.name} · ${item.lengthMm} mm`,`${item.kind}:${item.key}`))}
+ if([...list.options].some(x=>x.value===previous))list.value=previous;
+ else if(selectedPart&&[...list.options].some(x=>x.value===`${selectedPart.kind}:${selectedPart.key}`))list.value=`${selectedPart.kind}:${selectedPart.key}`;
+ else list.selectedIndex=-1;
+ updateComponentDetails();
+}
+function currentComponent(){const [kind,key]=($('componentList').value||'').split(':');return components.find(x=>x.kind===kind&&x.key===key)}
+function updateComponentDetails(){const item=currentComponent();$('componentDetails').textContent=item?`${item.name} | ${item.detail}`:'Bauteil auswählen, um Maße zu sehen.'}
+function chooseComponent(){const item=currentComponent();if(!item)return;
+ selectedPart={kind:item.kind,key:item.key};showSelection();
+ if(item.kind==='field'){$('fieldSelect').value=item.key;$('fieldFill').value=selectedFieldType(item.key);syncFrameControls();syncFieldWidth()}
+ updateComponentDetails();
+}
+$('componentFilter').addEventListener('change',refreshComponentList);
+$('componentList').addEventListener('change',chooseComponent);
+$('componentFocus').onclick=()=>{const item=currentComponent();if(!item)return;
+ const center=new THREE.Vector3(...item.position);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(1.6,1.1,2.4));controls.update();};
+$('componentExport').onclick=()=>{if(!components.length)return;
+ const rows=[['Typ','Bauteil','Schluessel','Profil oder Fuellung','Laenge_mm','Beschreibung'],...components.map(c=>[c.kind,c.name,c.key,c.profile,c.lengthMm,c.detail])];
+ const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
+ const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='metal-design-bauteile.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
 function rebuild(){try{
- for(const material of activeMaterials)material.dispose();activeMaterials=[];
  for(const item of [...pickGroup.children]){pickGroup.remove(item);item.geometry.dispose();item.material.dispose()}
- updateEnvironment();bom=[];$('csv').disabled=mode==='stairs';clear();const m=mats();activeMaterials.push(...Object.values(m));const details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
+ updateEnvironment();bom=[];cuts=[];$('csv').disabled=mode==='stairs';$('cutCsv').disabled=mode==='stairs';clear();for(const material of activeMaterials)material.dispose();activeMaterials=[];const m=mats();activeMaterials.push(...Object.values(m));const details=mode==='railing'?railing(m):staircase(m);refreshComponentList();$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Zuschnittliste separat exportierbar; vor Fertigung prüfen.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
 $('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
 function fit(front=false){const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());const r=Math.max(size.length(),1.5),distance=Math.min(95,r*1.7);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(front?0:distance*.55,front?0:distance*.42,distance));camera.near=.05;camera.far=250;camera.updateProjectionMatrix();controls.update()}
 const railingPresets={
@@ -500,7 +630,7 @@ function applyRailingPreset(key){
  const preset=railingPresets[key];if(!preset)return;
  for(const [id,value] of Object.entries(preset.values))setPresetValue(id,value);
  // A template starts a coherent new configuration. Existing saved projects are untouched.
- for(const obj of [fieldOverrides,individualPostOffsets,partOverrides])for(const k of Object.keys(obj))delete obj[k];
+ for(const obj of [fieldOverrides,fieldFrameOverrides,individualPostOffsets,partOverrides])for(const k of Object.keys(obj))delete obj[k];
  selectedPart=null;
  $('fieldSelect').value='all';
  $('railingPreset').value=key;
@@ -511,7 +641,7 @@ $('applyPreset').onclick=()=>applyRailingPreset($('railingPreset').value);
 $('resetPreset').onclick=()=>applyRailingPreset('classic');
 function switchMode(next){$('viewMode').textContent=next==='railing'?'Geländer · 3D-Modell':'Stiege · 3D-Modell';mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
 $('tabR').onclick=()=>switchMode('railing');$('tabS').onclick=()=>switchMode('stairs');
-for(const el of document.querySelectorAll('aside input, aside select')){if(['savedProjects','importFile','fieldSelect','fieldFill','fieldFrameMode','fieldFrameProfile','fieldInfillProfile','singlePostOffset'].includes(el.id))continue;el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()})};
+for(const el of document.querySelectorAll('aside input, aside select')){if(['savedProjects','importFile','fieldSelect','fieldFill','componentFilter','componentList','fieldFrameMode','fieldFrameProfile','fieldInfillProfile','singlePostOffset','finishPreset'].includes(el.id))continue;el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()})};
 let down=null,draggingPost=null;
 function pointerRay(e){
  const rect=canvas.getBoundingClientRect();
@@ -520,7 +650,7 @@ function pointerRay(e){
 }
 function hitPart(e){pointerRay(e);return raycaster.intersectObjects(pickGroup.children,false)[0]?.object?.userData?.part||null}
 function selectPart(part){
- selectedPart=part?{...part}:null;
+ selectedPart=part?{...part}:null;if(selectedPart){$('componentList').value=`${selectedPart.kind}:${selectedPart.key}`;updateComponentDetails();}
  if(part?.kind==='field'){$('fieldSelect').value=part.key;syncFrameControls();syncFieldWidth();$('fieldFill').value=selectedFieldType(part.key)}
  showSelection();if(selectedDimensions())rebuild();
 }
@@ -662,15 +792,20 @@ $('fullscreen').onclick=async()=>{const view=document.querySelector('.view');try
 document.addEventListener('fullscreenchange',()=>{$('fullscreen').textContent=document.fullscreenElement?'Vollbild beenden':'Vollbild 3D';resize()});
 $('fit').onclick=()=>fit();$('front').onclick=()=>fit(true);$('reset').onclick=()=>fit(false);
 $('save').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`metal-design-3d-${mode}.png`;a.click()};
+$('cutCsv').onclick=()=>{
+ const rows=[['Bauteil','Profil','Zuschnittlänge mm','Anzahl','Hinweis'],...cuts.map(c=>[c.name,c.profile,c.length,c.qty,c.remark])];
+ const csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
+ const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-zuschnittliste.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+};
 $('csv').onclick=()=>{
  const rows=[['Position','Anzahl','Laenge_mm_je_Stueck','Profilgewicht_kg'],...bom.map(x=>[x.label,x.count,Math.round(x.lengthMm),x.kg.toFixed(2)])];
  const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
  const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-materialuebersicht.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
-const projectFields=['shape','length','height','side1','side2','type','barGap','spacing','postOffset','topRailMode','topRailProfile','topRailDrop','bottomRailMode','bottomRailProfile','bottomRailRise','frameMode','frameProfile','infillProfile','frameInset','mount','rail','glassMount','environment','postProfile','handProfile','stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stepThickness','riserStyle','woodSpecies','woodFinish','stepFixing','stringerProfile','stringer','stairRailStyle','stairRail','material','color','renderQuality','surfaceFinish','dimensionMode'];
+const projectFields=['shape','length','height','side1','side2','type','barGap','spacing','postOffset','handEnd','cornerJoint','cutAllowance','topRailMode','topRailProfile','topRailDrop','bottomRailMode','bottomRailProfile','bottomRailRise','frameMode','frameProfile','infillProfile','frameInset','mount','plateSize','plateThickness','anchorSize','anchorLayout','wallBracket','rail','glassMount','environment','postProfile','handProfile','stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stepThickness','riserStyle','woodSpecies','woodFinish','stepFixing','stringerProfile','stringer','stairRailStyle','stairRail','material','color','renderQuality','surfaceFinish','surfaceRoughness','brushDirection','finishPreset','dimensionMode'];
 const STORE_KEY='metal-design-3d-projects-v2';
 function captureProject(){
- return {application:'METAL DESIGN 3D',version:'3.3',railingPreset:$('railingPreset').value,mode,project:$('project').value,
+ return {application:'METAL DESIGN 3D',version:'3.8',railingPreset:$('railingPreset').value,mode,project:$('project').value,
  dimensions:$('dimensions').checked,parameters:Object.fromEntries(projectFields.map(id=>[id,$(id).value])),
  fieldOverrides:{...fieldOverrides},fieldFrameOverrides:{...fieldFrameOverrides},individualPostOffsets:{...individualPostOffsets},partOverrides:{...partOverrides}};
 }

@@ -1,15 +1,22 @@
-# METAL DESIGN 3D – v3.3
+# METAL DESIGN 3D – v3.8 Qualitätsupdate
 
-## Neu: Individuelle Rahmen je Geländerfeld
-- Geländerfeld im 3D-Modell oder über „Einzelfeld bearbeiten“ auswählen.
-- Rahmen je Feld aktivieren/deaktivieren, unabhängig von der Projektvorgabe.
-- Rahmenprofil je Feld (30×20×2, 40×20×2, 40×40×2 mm) auswählen.
-- Füllstabprofil je Feld (Vierkant 12/14/16/20 mm oder Rund Ø12/16 mm) wählen.
-- Feldfüllung (Stäbe, Glas, Lochblech, Streckmetall) weiterhin separat festlegen.
-- Einzelrahmen zurücksetzen; Einstellungen werden in Projektdateien und lokalen Speicherständen gesichert.
+## Ziel
+METAL DESIGN 3D bleibt ein **reiner 3D-Konfigurator**. Kein Angebots- oder Kalkulationsmodul.
+
+## Korrekturen
+- Rahmenvorlagen setzen jetzt auch individuelle Feldrahmen-Einstellungen zurück; gespeicherte Projekte bleiben unberührt.
+- Zuschnittliste berücksichtigt das individuell eingestellte Pfostenprofil statt immer das Standardprofil.
+- Lichtes Achsmaß wird mit dem tatsächlichen Standard-Pfostenprofil statt einer festen 90-mm-Pauschale geschätzt.
+- Rahmenrücksprung wird bei kurzen Feldern begrenzt, um invertierte Geometrie zu vermeiden.
+- Plausibilitätsprüfung für Ober-/Untergurt-Höhen und zu kleine Füllungsbereiche.
+- Fehlermeldung bei zu breiten seitlichen Rahmenprofilen.
+- Materialressourcen werden erst nach Entfernen der alten Geometrie freigegeben.
 
 ## Installation
-Beide Dateien (`index.html` und `README.md`) ins GitHub-Repository hochladen. GitHub Pages braucht eine Internetverbindung für das Three.js-CDN.
+`index.html` und `README.md` im Root des GitHub-Repositories ersetzen und committen. Three.js wird online geladen; Internetverbindung und WebGL sind erforderlich.
 
-## Hinweise
-Die Darstellung ist eine schematische Vorplanung, keine Werkstattzeichnung oder statische Prüfung. Insbesondere Anschlussdetails, Geländerhöhen, Glaslagerung und Befestigung müssen für die tatsächliche Ausführung geprüft werden. Die Feldprofile werden noch nicht vollständig in der Stückliste berechnet.
+## Prüfung
+JavaScript-Syntax und HTML-ID-Referenzen geprüft. Kein vollständiger interaktiver Browser-/WebGL-Funktionstest; nicht als vollständig fehlerfrei zertifiziert.
+
+## Grenzen
+Nur Vorplanung und Visualisierung. Gehrungen, Schweißnähte, Befestigungen, Glasbemessung und Tragfähigkeit müssen vor Fertigung gesondert geprüft werden. Die Zuschnittliste ist nicht fertigungstauglich.
