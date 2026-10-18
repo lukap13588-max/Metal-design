@@ -1,19 +1,23 @@
-# METAL DESIGN 3D – v1.9
+# METAL DESIGN 3D v2.1
 
-Interaktiver WebGL-Konfigurator für Geländer und Stiegen.
+## Neu: Direktauswahl in 3D
+- Ein Geländerfeld direkt im 3D-Modell anklicken: Es wird im Feld-Dropdown ausgewählt und kann individuell befüllt werden.
+- Pfosten im 3D-Modell anklicken: den ausgewählten inneren Pfosten um bis zu ±300 mm versetzen oder zurücksetzen.
+- End- und Eckpfosten bleiben fix.
+- Die individuellen Pfostenversätze werden in der JSON-Konfiguration exportiert.
+- Drehbewegungen werden anhand der Pointer-Bewegung von Klicks unterschieden.
 
-## Neu in 1.9
-- Rundhandlauf wird als Zylinder statt als rechteckiger Balken dargestellt
-- Klarglas und Milchglas: Wahl zwischen schematischen Glasklemmen und Rahmenprofilen
-- Eckhandläufe mit visuellen Verbindungskappen (keine fertigungstauglichen Gehrungen)
-- Drei wählbare 3D-Umgebungen: dunkles Studio, helles Studio, Außenbereich
-- Neue Konfigurationswerte im JSON-Export
+## Bedienung
+1. Geländermodus auswählen und Maße einstellen.
+2. Feld anklicken, Füllung auswählen, **Füllung für Feld übernehmen**.
+3. Inneren Pfosten anklicken, **Ausgewählten Pfosten verschieben** einstellen, **Pfostenversatz übernehmen**.
+4. Bei Bedarf Kamera drehen, zoomen, Bemaßungen und Vollbild verwenden.
 
-## Weiterhin enthalten
-Gerade/L/U-Balkongeländer; senkrechte und waagrechte Stäbe, Glas, Lochblech, Streckmetall; Profile, Farben, Maße und Befestigungen. Gerade/L/U-Stiegen mit Holz-/Stahlstufen, Podesten und Geländern. Kameraansichten, Bemaßungen, Vollbild, PNG-/JSON-Export sowie bisherige überschlägige CSV-Materialübersicht.
+## Vorhandene Funktionen
+Gerade/L/U-Geländer; gerade/L/U-Stiegen; Material-, Farb- und Profilwahl; Klarglas, Milchglas, Lochblech, Streckmetall; Pfostenbefestigungen; Rundhandlauf; drei Umgebungen; Kameraansichten; PNG-, JSON- und überschlägiger CSV-Export.
 
-## Veröffentlichung mit GitHub Pages
-`index.html` und `README.md` in das Stammverzeichnis des Repositories hochladen und bestehende Dateien ersetzen. In **Settings → Pages** Branch `main` und `/(root)` einstellen. Die Seite braucht WebGL und eine Internetverbindung (Three.js-CDN).
+## GitHub Pages
+`index.html` und `README.md` in das Repository-Root hochladen bzw. ersetzen, Commit ausführen und GitHub Pages für Branch `main`, Ordner `/(root)` aktivieren. Internet für Three.js-CDN und WebGL-fähigen Browser erforderlich.
 
 ## Einschränkungen
-**Kundenvisualisierung, keine Fertigungsplanung.** Glasklemmen und Eckkappen sind nur optische Platzhalter; Glasstärken, Glaslagerung, Standsicherheit, Statik, Normen und Auflager müssen fachlich geprüft werden. Bei L-/U-Stiegen sind Podestanschlüsse schematisch. Ein Live-Browsertest der Version 1.9 wurde nicht durchgeführt.
+Nur schematische Kundenvisualisierung, **keine Fertigungszeichnung oder statische Prüfung**. Auswahlkörper sind unsichtbare Trefferflächen; bei Überlappungen kann ein anderes Feld/Pfosten ausgewählt werden. Pfostenverschiebung wird entlang der jeweiligen Geländerseite berechnet; sehr enge Felder und Anschlussdetails sind nicht konstruktiv geprüft. Der JSON-Export ist noch keine Import-/Wiederherstellungsfunktion. Browsertest ausstehend.

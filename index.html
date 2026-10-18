@@ -1,6 +1,6 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 1.9</title><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 2.1</title><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#edf3fb;background:#0c1523}*{box-sizing:border-box}body{margin:0}header{padding:15px 22px;border-bottom:1px solid #304158;display:flex;justify-content:space-between;align-items:center}h1{font-size:19px;margin:0}small,.muted{color:#aabbd0}main{display:grid;grid-template-columns:350px minmax(0,1fr);height:calc(100dvh - 67px)}aside{overflow:auto;padding:20px;background:#142235;border-right:1px solid #304158}label{display:block;margin:13px 0 6px;font-size:13px;color:#c9d5e6}input,select,button{width:100%;border:1px solid #3c526e;border-radius:8px;padding:11px;background:#1c3048;color:white;font:inherit}button{cursor:pointer;background:#2875db;border:0;font-weight:650;margin-top:10px}button.secondary{background:#304660}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #78b6ff}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{margin:18px 0;padding:13px;border:1px solid #415976;border-radius:9px;line-height:1.7;font-size:13px}.view{position:relative;min-height:350px}canvas{width:100%;height:100%;display:block;touch-action:none}.view:fullscreen{width:100vw;height:100vh;background:#17283c}.view:fullscreen canvas{height:100%}.view:fullscreen .hint{bottom:22px}.hint{position:absolute;bottom:16px;left:16px;background:#102137db;border:1px solid #425a73;border-radius:8px;padding:9px;font-size:12px;pointer-events:none}.tabs{display:flex;gap:8px}.tabs button{margin:0}.tabs button[aria-pressed="true"]{background:#2875db}.tabs button[aria-pressed="false"]{background:#304660}.hidden{display:none!important}#status{color:#ffb5b5;font-size:13px}h2{font-size:16px}fieldset{border:0;padding:0;margin:0}@media(max-width:800px){main{height:auto;grid-template-columns:1fr}aside{order:2}.view{height:53vh;min-height:340px}header{padding:12px}h1{font-size:17px}}
-</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v1.9</small></div><small>LIVE 3D</small></header><main><aside>
+</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v2.1</small></div><small>LIVE 3D</small></header><main><aside>
 <div class="tabs"><button id="tabR" aria-pressed="true" type="button">Geländer</button><button id="tabS" aria-pressed="false" type="button">Stiegen</button></div>
 <label for="project">Projekt / Kunde</label><input id="project" value="Musterprojekt" maxlength="80">
 <fieldset id="railing"><h2>Balkongeländer</h2>
@@ -8,6 +8,16 @@
 <div class="pair"><div><label for="length">Seite A (mm)</label><input id="length" type="number" min="500" max="12000" step="100" value="4000"></div><div><label for="height">Geländerhöhe (mm)</label><input id="height" type="number" min="700" max="1600" step="50" value="1000"></div></div>
 <div class="pair"><div><label for="side1">Seite B (mm)</label><input id="side1" type="number" min="500" max="12000" step="100" value="2500"></div><div><label for="side2">Seite C (mm)</label><input id="side2" type="number" min="500" max="12000" step="100" value="2500"></div></div>
 <label for="type">Füllung</label><select id="type"><option value="vertical">Senkrechte Stäbe</option><option value="horizontal">Waagrechte Stäbe</option><option value="glass">Klarglas</option><option value="frosted">Milchglas</option><option value="perforated">Lochblech</option><option value="mesh">Streckmetall</option></select>
+<div class="summary"><strong>Direktauswahl im 3D-Modell</strong><br>Klicke auf ein Feld oder einen Pfosten. Das ausgewählte Bauteil wird hervorgehoben.</div>
+<div id="selectedPart" class="summary" aria-live="polite">Noch kein Bauteil ausgewählt.</div>
+<label for="fieldSelect">Einzelfeld bearbeiten</label><select id="fieldSelect"><option value="all">Alle Felder</option></select>
+<label for="fieldFill">Füllung für gewähltes Feld</label><select id="fieldFill"><option value="vertical">Senkrechte Stäbe</option><option value="horizontal">Waagrechte Stäbe</option><option value="glass">Klarglas</option><option value="frosted">Milchglas</option><option value="perforated">Lochblech</option><option value="mesh">Streckmetall</option></select>
+<button id="applyField" class="secondary" type="button">Füllung für Feld übernehmen</button>
+<button id="clearFields" class="secondary" type="button">Einzelfelder zurücksetzen</button>
+<label for="singlePostOffset">Ausgewählten Pfosten verschieben (mm)</label><input id="singlePostOffset" type="number" min="-300" max="300" step="10" value="0">
+<button id="movePost" class="secondary" type="button">Pfostenversatz übernehmen</button>
+<button id="resetPost" class="secondary" type="button">Pfosten zurücksetzen</button>
+<label for="postOffset">Pfostenposition anpassen (mm)</label><input id="postOffset" type="number" min="-300" max="300" step="10" value="0"><small>Verschiebt die inneren Pfosten abwechselnd entlang der Geländerseite. Eck- und Endpfosten bleiben fix.</small>
 <label for="barGap">Füllstab-Raster (mm)</label><input id="barGap" type="number" min="50" max="250" step="5" value="110"><label for="spacing">Max. Pfostenabstand (mm)</label><input id="spacing" type="number" min="400" max="2500" step="50" value="1000">
 <label for="postProfile">Pfostenprofil (mm)</label><select id="postProfile"><option value="40x40x2">40 × 40 × 2</option><option value="50x50x3">50 × 50 × 3</option><option value="60x40x3">60 × 40 × 3</option></select>
 <label for="handProfile">Handlaufprofil (mm)</label><select id="handProfile"><option value="60x40x3">60 × 40 × 3</option><option value="40x40x2">40 × 40 × 2</option><option value="50x30x2">50 × 30 × 2</option></select>
@@ -72,23 +82,63 @@ function dimRailing(L,H,B,C){
 }
 function mats(){const colors={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2,'brushed':0xb8c1ca};return {metal:new THREE.MeshStandardMaterial({color:colors[$('color').value],metalness:$('material').value==='steel'?.65:.85,roughness:$('color').value==='inox'?.23:$('color').value==='brushed'?.48:.36}),glass:new THREE.MeshPhysicalMaterial({color:0x9bc7dc,transparent:true,opacity:.37,roughness:.08,depthWrite:false,side:THREE.DoubleSide}),frosted:new THREE.MeshPhysicalMaterial({color:0xc8e0e5,transparent:true,opacity:.77,roughness:.86,depthWrite:false,side:THREE.DoubleSide}),wood:new THREE.MeshStandardMaterial({color:0xb98652,roughness:.77})}}
 let bom=[];
+const pickGroup=new THREE.Group();scene.add(pickGroup);
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+let selectedPart=null;
+const individualPostOffsets={};
+function pickSurface(center,w,h,d,meta){
+ const mesh=new THREE.Mesh(new THREE.BoxGeometry(Math.max(.03,w),Math.max(.05,h),Math.max(.05,d)),new THREE.MeshBasicMaterial({visible:false,depthWrite:false}));
+ mesh.position.set(...center);mesh.userData.part=meta;pickGroup.add(mesh);
+}
+function showSelection(){
+ const info=$('selectedPart');
+ if(!selectedPart){info.textContent='Noch kein Bauteil ausgewählt.';return}
+ if(selectedPart.kind==='field'){
+  const f=fieldMetadata.find(f=>f.key===selectedPart.key);
+  info.textContent=f?`Ausgewählt: Seite ${f.side}, Feld ${f.index} (${Math.round(f.length*1000)} mm). Füllung rechts auswählen und übernehmen.`:'Feld nicht mehr vorhanden.';
+ }else{
+  info.textContent=`Ausgewählt: Pfosten ${selectedPart.key}. Individueller Versatz: ${individualPostOffsets[selectedPart.key]||0} mm.`;$('singlePostOffset').value=individualPostOffsets[selectedPart.key]||0;
+ }
+}
+
+const fieldOverrides={};let fieldMetadata=[];
+function selectedFieldType(fieldKey){return fieldOverrides[fieldKey]||$('type').value}
+function refreshFieldList(){
+ const select=$('fieldSelect'),previous=select.value;
+ select.replaceChildren(new Option('Alle Felder','all'));
+ for(const f of fieldMetadata)select.add(new Option(`Seite ${f.side} · Feld ${f.index} (${Math.round(f.length*1000)} mm)`,f.key));
+ select.value=fieldMetadata.some(f=>f.key===previous)?previous:'all';
+ $('fieldFill').value=select.value==='all'?$('type').value:selectedFieldType(select.value);
+}
+
 function addBom(label,count,lengthMm,kgPerM){bom.push({label,count,lengthMm,kg:count*lengthMm/1000*kgPerM})}
 function kgm(profile,mat){
  const [w,d,t]=profile.split('x').map(Number),density=mat==='aluminum'?2700:mat==='stainless'?8000:7850;
  return ((w*d-Math.max(0,w-2*t)*Math.max(0,d-2*t))*1e-6)*density;
 }
-function railing(m){const L=n('length',500,12000)/1000,H=n('height',700,1600)/1000,S=n('spacing',400,2500)/1000,shape=$('shape').value,B=shape==='straight'?0:n('side1',500,12000)/1000,C=shape==='U'?n('side2',500,12000)/1000:0;const runs=[[[-L/2,0],[L/2,0]]];if(B)runs.push([[L/2,0],[L/2,-B]]);if(C)runs.push([[L/2,-B],[L/2-C,-B]]);
+function railing(m){fieldMetadata=[];const L=n('length',500,12000)/1000,H=n('height',700,1600)/1000,S=n('spacing',400,2500)/1000,shape=$('shape').value,B=shape==='straight'?0:n('side1',500,12000)/1000,C=shape==='U'?n('side2',500,12000)/1000:0;const runs=[[[-L/2,0],[L/2,0]]];if(B)runs.push([[L/2,0],[L/2,-B]]);if(C)runs.push([[L/2,-B],[L/2-C,-B]]);
 let postCount=0,panels=0;
 const pp=$('postProfile').value,hp=$('handProfile').value,[pw,pd]=pp.split('x').map(Number),[hw,hd]=hp.split('x').map(Number);
 const postWidth=pw/1000,postDepth=pd/1000;
-const positions=new Set();for(const [[ax,az],[bx,bz]] of runs){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const at=(t,y,offset=0)=>[ax+ux*t+perp[0]*offset,y,az+uz*t+perp[1]*offset];for(let i=0;i<=N;i++){const p=at(i*step,0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;box(postWidth,H,postDepth,p[0],H/2,p[2],m.metal);
+const positions=new Set();for(const [sideIndex,[[ax,az],[bx,bz]]] of runs.entries()){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const postOffset=n('postOffset',-300,300)/1000;
+const postAt=i=>{
+ if(i===0||i===N)return i*step;
+ const offset=Object.hasOwn(individualPostOffsets,`${sideIndex}-${i}`)?individualPostOffsets[`${sideIndex}-${i}`]/1000:(i%2?postOffset:-postOffset);
+ return Math.min((i+1)*step-.10,Math.max((i-1)*step+.10,i*step+offset));
+};
+const at=(t,y,offset=0)=>[ax+ux*t+perp[0]*offset,y,az+uz*t+perp[1]*offset];for(let i=0;i<=N;i++){const p=at(postAt(i),0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;box(postWidth,H,postDepth,p[0],H/2,p[2],m.metal);
+pickSurface([p[0],H/2,p[2]],Math.max(.12,postWidth*2),H,Math.max(.12,postDepth*2),{kind:'post',key:`${sideIndex}-${i}`});
 if($('mount').value==='top'){box(.15,.015,.15,p[0],.008,p[2],m.metal);for(const dx of [-.052,.052])for(const dz of [-.052,.052]){const bolt=box(.013,.009,.013,p[0]+dx,.020,p[2]+dz,m.metal);}}
 else {box(.15,.15,.016,p[0],.12,p[2]-.073,m.metal);for(const dx of [-.05,.05])for(const dy of [.07,.17])box(.014,.014,.012,p[0]+dx,dy,p[2]-.084,m.metal)}}
 const p0=at(0,H),p1=at(len,H);
 if($('rail').value==='round')roundBeam(p0,p1,hw/2000,m.metal);
 else beam(p0,p1,hw/1000,hd/1000,m.metal);
-for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(start+end)/2,inner=Math.max(.02,end-start);if($('type').value==='vertical'){beam(at(start,.15),at(end,.15),.025,.025,m.metal);const count=Math.max(1,Math.ceil(inner/(n('barGap',50,250)/1000))-1);for(let j=1;j<=count;j++){const t=start+j*inner/(count+1);beam(at(t,.16),at(t,H-.06),.018,.018,m.metal)}}else if($('type').value==='horizontal'){for(let j=1;j<=5;j++){const y=.09+j*(H-.17)/6;beam(at(start,y),at(end,y),.018,.018,m.metal)}}else if(['glass','frosted'].includes($('type').value)){
- const p=at(mid,H/2);const mesh=box(inner,H-.20,.012,...p,$('type').value==='frosted'?m.frosted:m.glass);
+for(let i=0;i<N;i++){panels++;const start=postAt(i)+.045,end=postAt(i+1)-.045,fieldKey=`${sideIndex}-${i}`,fieldType=selectedFieldType(fieldKey);
+fieldMetadata.push({key:fieldKey,side:String.fromCharCode(65+sideIndex),index:i+1,length:Math.max(.02,end-start)});
+const center=at((start+end)/2,H/2);
+pickSurface(center,Math.abs(ux)*Math.max(.05,end-start)+.10,H-.12,Math.abs(uz)*Math.max(.05,end-start)+.10,{kind:'field',key:fieldKey});
+const mid=(start+end)/2,inner=Math.max(.02,end-start);if(fieldType==='vertical'){beam(at(start,.15),at(end,.15),.025,.025,m.metal);const count=Math.max(1,Math.ceil(inner/(n('barGap',50,250)/1000))-1);for(let j=1;j<=count;j++){const t=start+j*inner/(count+1);beam(at(t,.16),at(t,H-.06),.018,.018,m.metal)}}else if(fieldType==='horizontal'){for(let j=1;j<=5;j++){const y=.09+j*(H-.17)/6;beam(at(start,y),at(end,y),.018,.018,m.metal)}}else if(['glass','frosted'].includes(fieldType)){
+ const p=at(mid,H/2);const mesh=box(inner,H-.20,.012,...p,fieldType==='frosted'?m.frosted:m.glass);
  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));
  if($('glassMount').value==='frame'){
  beam(at(start,.12),at(end,.12),.025,.025,m.metal);
@@ -99,7 +149,7 @@ for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(s
  clamp.rotation.y=-Math.atan2(uz,ux);
  }
 }
-}else if($('type').value==='perforated'){
+}else if(fieldType==='perforated'){
  // Actual openings in a thin ShapeGeometry panel (conceptual punched sheet).
  const panelHeight=Math.max(.1,H-.22),shape2=new THREE.Shape();
  shape2.moveTo(-inner/2,0);shape2.lineTo(inner/2,0);shape2.lineTo(inner/2,panelHeight);shape2.lineTo(-inner/2,panelHeight);shape2.closePath();
@@ -110,7 +160,7 @@ for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(s
  const geom=new THREE.ShapeGeometry(shape2,3),panel=new THREE.Mesh(geom,new THREE.MeshStandardMaterial({color:m.metal.color,metalness:.65,roughness:.45,side:THREE.DoubleSide}));
  panel.position.set(...at(mid,.11));panel.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));
  model.add(panel);
-}else if($('type').value==='mesh'){
+}else if(fieldType==='mesh'){
  const top=H-.10,bottom=.11,pitch=.15;
  for(let t=start;t<=end;t+=pitch){
  const t2=Math.min(end,t+pitch);
@@ -123,7 +173,7 @@ for(let i=1;i<runs.length;i++){
  const cap=new THREE.Mesh(new THREE.SphereGeometry($('rail').value==='round'?hw/2000:Math.max(hw,hd)/2200,12,8),m.metal);
  cap.position.set(corner[0],H,corner[1]);cap.castShadow=true;model.add(cap);
 }
-dimRailing(L,H,B,C);
+refreshFieldList();showSelection();dimRailing(L,H,B,C);
 addBom('Pfosten RHS '+pp,postCount,H*1000,kgm(pp,$('material').value));
 addBom('Handlauf '+($('rail').value==='round'?'Rund (vereinfachte Gewichtsschätzung) ':'RHS ')+hp,1,(L+B+C)*1000,kgm(hp,$('material').value));
 addBom('Befestigungsplatten (Stück)',postCount,0,0);
@@ -212,12 +262,32 @@ function updateEnvironment(){
  floor.material.color.setHex(env==='studio'?0x1b2b40:env==='bright'?0xc4ced8:0x8fa48c);
  grid.visible=env!=='outdoor';
 }
-function rebuild(){try{updateEnvironment();bom=[];$('csv').disabled=mode==='stairs';clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
+function rebuild(){try{
+ for(const item of [...pickGroup.children]){pickGroup.remove(item);item.geometry.dispose();item.material.dispose()}
+ updateEnvironment();bom=[];$('csv').disabled=mode==='stairs';clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
 $('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
 function fit(front=false){const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());const r=Math.max(size.length(),1.5),distance=Math.min(95,r*1.7);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(front?0:distance*.55,front?0:distance*.42,distance));camera.near=.05;camera.far=250;camera.updateProjectionMatrix();controls.update()}
 function switchMode(next){mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
 $('tabR').onclick=()=>switchMode('railing');$('tabS').onclick=()=>switchMode('stairs');
 for(const el of document.querySelectorAll('aside input, aside select'))el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()});
+let down=null;
+canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}});
+canvas.addEventListener('pointerup',e=>{
+ if(mode!=='railing'||!down)return;
+ const dist=Math.hypot(e.clientX-down.x,e.clientY-down.y);down=null;
+ if(dist>7)return;
+ const rect=canvas.getBoundingClientRect();
+ pointer.set(((e.clientX-rect.left)/rect.width)*2-1,-((e.clientY-rect.top)/rect.height)*2+1);
+ raycaster.setFromCamera(pointer,camera);
+ const hits=raycaster.intersectObjects(pickGroup.children,false);
+ if(!hits.length){selectedPart=null;showSelection();return}
+ const part=hits[0].object.userData.part;
+ selectedPart={...part};
+ if(part.kind==='field'){
+  $('fieldSelect').value=part.key;$('fieldFill').value=selectedFieldType(part.key);
+ }
+ showSelection();
+});
 function cameraView(kind){
  const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),d=Math.max(3,size.length()*1.8);
  controls.target.copy(center);
@@ -225,6 +295,26 @@ function cameraView(kind){
  camera.position.copy(center).add(new THREE.Vector3(...dir).normalize().multiplyScalar(d));
  camera.up.set(0,1,0);camera.lookAt(center);controls.update();
 }
+$('fieldSelect').addEventListener('change',()=>{$('fieldFill').value=$('fieldSelect').value==='all'?$('type').value:selectedFieldType($('fieldSelect').value)});
+$('applyField').onclick=()=>{
+ const key=$('fieldSelect').value;
+ if(key==='all'){$('type').value=$('fieldFill').value;for(const k of Object.keys(fieldOverrides))delete fieldOverrides[k];}
+ else fieldOverrides[key]=$('fieldFill').value;
+ rebuild();
+};
+$('movePost').onclick=()=>{
+ if(!selectedPart||selectedPart.kind!=='post'){$('status').textContent='Zuerst einen Pfosten im 3D-Modell anklicken.';return}
+ const [side,index]=selectedPart.key.split('-').map(Number);
+ const matching=fieldMetadata.filter(f=>f.key.startsWith(side+'-'));
+ if(index===0||index===matching.length){$('status').textContent='End- und Eckpfosten bleiben fix.';return}
+ individualPostOffsets[selectedPart.key]=Math.max(-300,Math.min(300,Number($('singlePostOffset').value)||0));
+ rebuild();
+};
+$('resetPost').onclick=()=>{
+ if(!selectedPart||selectedPart.kind!=='post')return;
+ delete individualPostOffsets[selectedPart.key];rebuild();
+};
+$('clearFields').onclick=()=>{for(const k of Object.keys(fieldOverrides))delete fieldOverrides[k];rebuild()};
 $('dimensions').addEventListener('change',()=>{rebuild()});
 $('sideView').onclick=()=>cameraView('side');$('topView').onclick=()=>cameraView('top');
 $('fullscreen').onclick=async()=>{const view=document.querySelector('.view');try{if(document.fullscreenElement)await document.exitFullscreen();else await view.requestFullscreen()}catch(e){$('status').textContent='Vollbild nicht verfügbar: '+e.message}};
@@ -236,6 +326,6 @@ $('csv').onclick=()=>{
  const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
  const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-materialuebersicht.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
-$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','barGap','spacing','mount','rail','glassMount','environment','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail','environment'];const data={application:'METAL DESIGN 3D',version:'1.9',mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','barGap','spacing','postOffset','mount','rail','glassMount','environment','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail','environment'];const data={application:'METAL DESIGN 3D',version:'2.1',fieldOverrides:{...fieldOverrides},individualPostOffsets:{...individualPostOffsets},mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(canvas);function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}rebuild();fit();resize();animate();
 </script></body></html>
