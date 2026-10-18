@@ -1,31 +1,27 @@
-# METAL DESIGN 3D – Geländerkonfigurator
+# METAL DESIGN 3D – v1.2
 
-Interaktiver 3D-Web-Prototyp zur Präsentation von Balkongeländern.
+Interaktiver 3D-Balkongeländer-Konfigurator für Kundenpräsentationen.
+
+## Start
+`index.html` im Browser über einen lokalen Webserver öffnen oder auf GitHub Pages bereitstellen. Three.js wird über CDN geladen, daher ist eine Internetverbindung erforderlich.
+
+## GitHub Pages
+1. `index.html` und `README.md` in das Stammverzeichnis deines Repositories hochladen.
+2. Unter **Settings → Pages** `Deploy from a branch`, `main`, `/(root)` auswählen.
+3. Auf die veröffentlichte URL warten und bei Bedarf den Browsercache aktualisieren.
 
 ## Funktionen
-- Echtzeit-3D mit Maus- und Touchsteuerung (Three.js)
-- Geländertypen: senkrechte Stäbe, waagrechte Stäbe, Glas
-- Länge, Höhe, maximaler Pfostenabstand
-- Stahl, Edelstahl, Aluminium sowie RAL-Farben und Edelstahloptik
-- Eckiger oder runder Handlauf
-- Automatische Aufteilung in Felder und Pfosten
-- Export der Ansicht als PNG und Konfiguration als JSON
-- Responsive Oberfläche für PC und Smartphone
+- 3D-Modell mit Maus/Touch drehen und zoomen
+- Senkrechte Stäbe, waagrechte Stäbe, Glasfüllung
+- Maße: Länge, Höhe, maximaler Pfostenabstand
+- Stahl, Edelstahl, Aluminium; RAL-Oberflächen
+- Rechteck- oder Rundhandlauf
+- Fußplatten aufgesetzt oder seitliche Befestigung
+- Projektbezeichnung, Frontansicht, automatische Gesamtansicht
+- PNG-Screenshot und JSON-Konfiguration exportieren
 
-## GitHub Pages veröffentlichen
-1. Neues öffentliches GitHub-Repository erstellen, z. B. `metal-design-3d`.
-2. `index.html` und `README.md` im Stammverzeichnis hochladen.
-3. **Settings → Pages → Build and deployment → Deploy from a branch** auswählen.
-4. Branch **main** und Ordner **/(root)** auswählen und speichern.
-5. Nach der Veröffentlichung unter `https://DEIN-NAME.github.io/metal-design-3d/` öffnen.
+## Hinweise
+Das Modell ist eine **unverbindliche Visualisierung**. Weder Statik, Geländerhöhe, Füllstab-Abstände, Glasdimensionierung noch Befestigung sind baurechtlich oder statisch geprüft. Profile sind schematisch. Nicht zur Fertigung freigeben.
 
-## Lokal testen
-Die Datei `index.html` mit einem lokalen Webserver öffnen, z. B. in VS Code mit Live Server oder per `python -m http.server 8000` und `http://localhost:8000`.
-
-**Internetverbindung erforderlich:** Three.js und OrbitControls werden von jsDelivr geladen.
-
-## Hinweis
-Dies ist ein **Visualisierungsprototyp**. Er prüft keine Statik, Absturzsicherheit, Geländerabstände, Anschlüsse oder baurechtliche Normen. Profilabmessungen und Materialdarstellung sind beispielhaft. Nicht als Fertigungs- oder Montageplanung verwenden.
-
-## Version 1.1
-Fehlerbehebung: Three.js Import Map ergänzt, damit OrbitControls auf GitHub Pages korrekt geladen wird. Internetverbindung zum Laden der Bibliothek erforderlich.
+## Technik
+Eine HTML-Datei, Vanilla JavaScript, Three.js 0.160.1 mit OrbitControls über Import Map. Kein Buildprozess nötig.
