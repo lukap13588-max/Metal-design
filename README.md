@@ -1,17 +1,15 @@
-# METAL DESIGN 3D – Version 2.5
+# METAL DESIGN 3D – v3.3
 
-## Neu: überarbeitete Bedienoberfläche
-- Modernisierte Farben, Abstände, Formulare und Konfigurationsbereiche.
-- Größeres, responsives 3D-Fenster mit Schnellzugriff auf Gesamtansicht, Vorderansicht, Draufsicht und Perspektive.
-- **Präsentationsmodus**: blendet den Einstellungsbereich aus, damit das Modell Kunden groß gezeigt werden kann. Mit „Bearbeiten“ oder Escape zurückwechseln.
-- Projekttitel und aktueller Modus werden direkt im 3D-Fenster angezeigt.
-- Auf schmalen Displays steht die 3D-Ansicht vor den Einstellungen.
+## Neu: Individuelle Rahmen je Geländerfeld
+- Geländerfeld im 3D-Modell oder über „Einzelfeld bearbeiten“ auswählen.
+- Rahmen je Feld aktivieren/deaktivieren, unabhängig von der Projektvorgabe.
+- Rahmenprofil je Feld (30×20×2, 40×20×2, 40×40×2 mm) auswählen.
+- Füllstabprofil je Feld (Vierkant 12/14/16/20 mm oder Rund Ø12/16 mm) wählen.
+- Feldfüllung (Stäbe, Glas, Lochblech, Streckmetall) weiterhin separat festlegen.
+- Einzelrahmen zurücksetzen; Einstellungen werden in Projektdateien und lokalen Speicherständen gesichert.
 
-## Weiterhin enthalten
-Gerade, L- und U-Geländer sowie -Stiegen; Einzelfelder, Pfostenversatz und 3D-Auswahl; Glas, Milchglas, Lochblech, Streckmetall; Materialien, Farben, Profile, Stufenstärke, Holzarten, Setzstufen, Befestigungen; Bemaßung, Export und lokale Projektverwaltung.
+## Installation
+Beide Dateien (`index.html` und `README.md`) ins GitHub-Repository hochladen. GitHub Pages braucht eine Internetverbindung für das Three.js-CDN.
 
-## GitHub Pages
-ZIP entpacken und `index.html` und `README.md` im Repository-Root ersetzen. GitHub Pages: Branch `main`, Ordner `/(root)`. WebGL und Internetzugang (Three.js-CDN) sind erforderlich.
-
-## Grenzen
-Nur schematische Kundenvisualisierung, keine Fertigungszeichnung, Statik oder Normprüfung. Projekte im Browser zusätzlich als JSON sichern. Syntaxprüfung durchgeführt; vollständiger Browsertest ausstehend.
+## Hinweise
+Die Darstellung ist eine schematische Vorplanung, keine Werkstattzeichnung oder statische Prüfung. Insbesondere Anschlussdetails, Geländerhöhen, Glaslagerung und Befestigung müssen für die tatsächliche Ausführung geprüft werden. Die Feldprofile werden noch nicht vollständig in der Stückliste berechnet.
