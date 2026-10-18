@@ -26,3 +26,6 @@ Die Datei `index.html` mit einem lokalen Webserver öffnen, z. B. in VS Code mit
 
 ## Hinweis
 Dies ist ein **Visualisierungsprototyp**. Er prüft keine Statik, Absturzsicherheit, Geländerabstände, Anschlüsse oder baurechtliche Normen. Profilabmessungen und Materialdarstellung sind beispielhaft. Nicht als Fertigungs- oder Montageplanung verwenden.
+
+## Version 1.1
+Fehlerbehebung: Three.js Import Map ergänzt, damit OrbitControls auf GitHub Pages korrekt geladen wird. Internetverbindung zum Laden der Bibliothek erforderlich.
