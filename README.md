@@ -1,17 +1,19 @@
-# METAL DESIGN 3D v1.7
+# METAL DESIGN 3D – v1.9
 
-## Neu
-- Wählbare Pfostenprofile: RHS 40×40×2, 50×50×3, 60×40×3 mm
-- Wählbare Handlaufprofile: RHS 60×40×3, 40×40×2, 50×30×2 mm
-- Dargestellte Schraubenköpfe an Fußplatten (rein optisch)
-- Überschlägige Materialübersicht für Pfosten und Handlauf mit theoretischen kg/m
-- CSV-Export (Semikolon getrennt, Excel-kompatibel)
+Interaktiver WebGL-Konfigurator für Geländer und Stiegen.
+
+## Neu in 1.9
+- Rundhandlauf wird als Zylinder statt als rechteckiger Balken dargestellt
+- Klarglas und Milchglas: Wahl zwischen schematischen Glasklemmen und Rahmenprofilen
+- Eckhandläufe mit visuellen Verbindungskappen (keine fertigungstauglichen Gehrungen)
+- Drei wählbare 3D-Umgebungen: dunkles Studio, helles Studio, Außenbereich
+- Neue Konfigurationswerte im JSON-Export
 
 ## Weiterhin enthalten
-Gerade/L/U-Balkongeländer; gerade/L/U-Stiegen; Materialien und Farben; Holz- und Stahlstufen; Maße, PNG/JSON-Export und 3D-Kamerasteuerung.
+Gerade/L/U-Balkongeländer; senkrechte und waagrechte Stäbe, Glas, Lochblech, Streckmetall; Profile, Farben, Maße und Befestigungen. Gerade/L/U-Stiegen mit Holz-/Stahlstufen, Podesten und Geländern. Kameraansichten, Bemaßungen, Vollbild, PNG-/JSON-Export sowie bisherige überschlägige CSV-Materialübersicht.
 
-## GitHub Pages
-`index.html` und `README.md` im Repository ersetzen, committen, Settings → Pages → Deploy from a branch → main / (root). Three.js wird online über jsDelivr geladen.
+## Veröffentlichung mit GitHub Pages
+`index.html` und `README.md` in das Stammverzeichnis des Repositories hochladen und bestehende Dateien ersetzen. In **Settings → Pages** Branch `main` und `/(root)` einstellen. Die Seite braucht WebGL und eine Internetverbindung (Three.js-CDN).
 
-## Grenzen
-**Nur Visualisierung, nicht zur Fertigung.** Materialliste umfasst aktuell nur Pfosten, Handlauf und Stückzahl der Platten; Füllungen, Verschnitt, Schweißnähte, Befestigungsmittelgewicht und Zuschnittoptimierung fehlen. Profile werden als massive Körper gerendert, theoretisches Gewicht wird separat über Hohlprofilquerschnitte berechnet. Rundhandlauf wird visuell nur angenähert. Keine Statik, Normprüfung, Geländersicherheit oder geprüften Anschlüsse. Stiegen-Materialberechnung noch nicht implementiert.
+## Einschränkungen
+**Kundenvisualisierung, keine Fertigungsplanung.** Glasklemmen und Eckkappen sind nur optische Platzhalter; Glasstärken, Glaslagerung, Standsicherheit, Statik, Normen und Auflager müssen fachlich geprüft werden. Bei L-/U-Stiegen sind Podestanschlüsse schematisch. Ein Live-Browsertest der Version 1.9 wurde nicht durchgeführt.

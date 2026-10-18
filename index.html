@@ -1,17 +1,18 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 1.7</title><style>
-:root{font-family:system-ui,Arial,sans-serif;color:#edf3fb;background:#0c1523}*{box-sizing:border-box}body{margin:0}header{padding:15px 22px;border-bottom:1px solid #304158;display:flex;justify-content:space-between;align-items:center}h1{font-size:19px;margin:0}small,.muted{color:#aabbd0}main{display:grid;grid-template-columns:350px minmax(0,1fr);height:calc(100dvh - 67px)}aside{overflow:auto;padding:20px;background:#142235;border-right:1px solid #304158}label{display:block;margin:13px 0 6px;font-size:13px;color:#c9d5e6}input,select,button{width:100%;border:1px solid #3c526e;border-radius:8px;padding:11px;background:#1c3048;color:white;font:inherit}button{cursor:pointer;background:#2875db;border:0;font-weight:650;margin-top:10px}button.secondary{background:#304660}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #78b6ff}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{margin:18px 0;padding:13px;border:1px solid #415976;border-radius:9px;line-height:1.7;font-size:13px}.view{position:relative;min-height:350px}canvas{width:100%;height:100%;display:block;touch-action:none}.hint{position:absolute;bottom:16px;left:16px;background:#102137db;border:1px solid #425a73;border-radius:8px;padding:9px;font-size:12px;pointer-events:none}.tabs{display:flex;gap:8px}.tabs button{margin:0}.tabs button[aria-pressed="true"]{background:#2875db}.tabs button[aria-pressed="false"]{background:#304660}.hidden{display:none!important}#status{color:#ffb5b5;font-size:13px}h2{font-size:16px}fieldset{border:0;padding:0;margin:0}@media(max-width:800px){main{height:auto;grid-template-columns:1fr}aside{order:2}.view{height:53vh;min-height:340px}header{padding:12px}h1{font-size:17px}}
-</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v1.7</small></div><small>LIVE 3D</small></header><main><aside>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>METAL DESIGN 3D · 1.9</title><style>
+:root{font-family:system-ui,Arial,sans-serif;color:#edf3fb;background:#0c1523}*{box-sizing:border-box}body{margin:0}header{padding:15px 22px;border-bottom:1px solid #304158;display:flex;justify-content:space-between;align-items:center}h1{font-size:19px;margin:0}small,.muted{color:#aabbd0}main{display:grid;grid-template-columns:350px minmax(0,1fr);height:calc(100dvh - 67px)}aside{overflow:auto;padding:20px;background:#142235;border-right:1px solid #304158}label{display:block;margin:13px 0 6px;font-size:13px;color:#c9d5e6}input,select,button{width:100%;border:1px solid #3c526e;border-radius:8px;padding:11px;background:#1c3048;color:white;font:inherit}button{cursor:pointer;background:#2875db;border:0;font-weight:650;margin-top:10px}button.secondary{background:#304660}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #78b6ff}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{margin:18px 0;padding:13px;border:1px solid #415976;border-radius:9px;line-height:1.7;font-size:13px}.view{position:relative;min-height:350px}canvas{width:100%;height:100%;display:block;touch-action:none}.view:fullscreen{width:100vw;height:100vh;background:#17283c}.view:fullscreen canvas{height:100%}.view:fullscreen .hint{bottom:22px}.hint{position:absolute;bottom:16px;left:16px;background:#102137db;border:1px solid #425a73;border-radius:8px;padding:9px;font-size:12px;pointer-events:none}.tabs{display:flex;gap:8px}.tabs button{margin:0}.tabs button[aria-pressed="true"]{background:#2875db}.tabs button[aria-pressed="false"]{background:#304660}.hidden{display:none!important}#status{color:#ffb5b5;font-size:13px}h2{font-size:16px}fieldset{border:0;padding:0;margin:0}@media(max-width:800px){main{height:auto;grid-template-columns:1fr}aside{order:2}.view{height:53vh;min-height:340px}header{padding:12px}h1{font-size:17px}}
+</style></head><body><header><div><h1>METAL DESIGN <span style="color:#70b4ff">3D</span></h1><small>Geländer & Stiegen · v1.9</small></div><small>LIVE 3D</small></header><main><aside>
 <div class="tabs"><button id="tabR" aria-pressed="true" type="button">Geländer</button><button id="tabS" aria-pressed="false" type="button">Stiegen</button></div>
 <label for="project">Projekt / Kunde</label><input id="project" value="Musterprojekt" maxlength="80">
 <fieldset id="railing"><h2>Balkongeländer</h2>
 <label for="shape">Grundriss</label><select id="shape"><option value="straight">Gerade</option><option value="L">L-Form</option><option value="U">U-Form</option></select>
 <div class="pair"><div><label for="length">Seite A (mm)</label><input id="length" type="number" min="500" max="12000" step="100" value="4000"></div><div><label for="height">Geländerhöhe (mm)</label><input id="height" type="number" min="700" max="1600" step="50" value="1000"></div></div>
 <div class="pair"><div><label for="side1">Seite B (mm)</label><input id="side1" type="number" min="500" max="12000" step="100" value="2500"></div><div><label for="side2">Seite C (mm)</label><input id="side2" type="number" min="500" max="12000" step="100" value="2500"></div></div>
-<label for="type">Füllung</label><select id="type"><option value="vertical">Senkrechte Stäbe</option><option value="horizontal">Waagrechte Stäbe</option><option value="glass">Glas</option></select>
-<label for="spacing">Max. Pfostenabstand (mm)</label><input id="spacing" type="number" min="400" max="2500" step="50" value="1000">
+<label for="type">Füllung</label><select id="type"><option value="vertical">Senkrechte Stäbe</option><option value="horizontal">Waagrechte Stäbe</option><option value="glass">Klarglas</option><option value="frosted">Milchglas</option><option value="perforated">Lochblech</option><option value="mesh">Streckmetall</option></select>
+<label for="barGap">Füllstab-Raster (mm)</label><input id="barGap" type="number" min="50" max="250" step="5" value="110"><label for="spacing">Max. Pfostenabstand (mm)</label><input id="spacing" type="number" min="400" max="2500" step="50" value="1000">
 <label for="postProfile">Pfostenprofil (mm)</label><select id="postProfile"><option value="40x40x2">40 × 40 × 2</option><option value="50x50x3">50 × 50 × 3</option><option value="60x40x3">60 × 40 × 3</option></select>
 <label for="handProfile">Handlaufprofil (mm)</label><select id="handProfile"><option value="60x40x3">60 × 40 × 3</option><option value="40x40x2">40 × 40 × 2</option><option value="50x30x2">50 × 30 × 2</option></select>
 <label for="mount">Befestigung</label><select id="mount"><option value="top">Aufgesetzt</option><option value="side">Seitlich</option></select>
+<label for="glassMount">Glasbefestigung</label><select id="glassMount"><option value="clamps">Glasklemmen</option><option value="frame">Rahmenprofile</option></select>
 <label for="rail">Handlauf</label><select id="rail"><option value="square">Rechteck</option><option value="round">Rundrohr</option></select></fieldset>
 <fieldset id="stairs" class="hidden"><h2>Stiegengenerator</h2>
 <label for="stairShape">Stiegenform</label><select id="stairShape"><option value="straight">Gerade Stiege</option><option value="L">L-Stiege mit 90°-Podest</option><option value="U">U-Stiege mit zwei 90°-Podesten</option></select>
@@ -23,10 +24,11 @@
 <label for="stringer">Stahlwangen</label><select id="stringer"><option value="both">Beidseitig</option><option value="center">Mittelholm</option></select>
 <label for="stairRail">Stiegengeländer</label><select id="stairRail"><option value="both">Beidseitig</option><option value="left">Links</option><option value="right">Rechts</option><option value="none">Ohne</option></select>
 <p class="muted" style="font-size:12px">Stufenanzahl wird aus Geschosshöhe und Ziel-Steigung berechnet. Die obere Geschossfläche ist als Anschlusspunkt angenommen.</p></fieldset>
-<label for="material">Tragmaterial</label><select id="material"><option value="steel">Stahl</option><option value="stainless">Edelstahl</option><option value="aluminum">Aluminium</option></select>
-<label for="color">Farbe / Oberfläche</label><select id="color"><option value="7016">RAL 7016 – Anthrazit</option><option value="9005">RAL 9005 – Schwarz</option><option value="9016">RAL 9016 – Weiß</option><option value="7035">RAL 7035 – Lichtgrau</option><option value="inox">Edelstahloptik</option></select>
+<label for="environment">3D-Umgebung</label><select id="environment"><option value="studio">Studio – Dunkel</option><option value="bright">Studio – Hell</option><option value="outdoor">Außenbereich – Tageslicht</option></select><label for="material">Tragmaterial</label><select id="material"><option value="steel">Stahl</option><option value="stainless">Edelstahl</option><option value="aluminum">Aluminium</option></select>
+<label for="color">Farbe / Oberfläche</label><select id="color"><option value="7016">RAL 7016 – Anthrazit</option><option value="9005">RAL 9005 – Schwarz</option><option value="9016">RAL 9016 – Weiß</option><option value="7035">RAL 7035 – Lichtgrau</option><option value="inox">Edelstahloptik</option><option value="brushed">Edelstahl gebürstet</option></select>
 <div id="summary" class="summary" aria-live="polite"></div><div id="materials" class="summary" aria-live="polite"></div><button id="csv" class="secondary">Materialübersicht als CSV</button>
-<button id="fit">Gesamtansicht</button><button id="front" class="secondary">Vorderansicht</button><button id="reset" class="secondary">Perspektive</button><button id="save" class="secondary">PNG speichern</button><button id="config" class="secondary">JSON speichern</button>
+<label style="display:flex;align-items:center;gap:9px"><input id="dimensions" type="checkbox" checked style="width:auto"> 3D-Bemaßung anzeigen</label>
+<button id="fit">Gesamtansicht</button><button id="front" class="secondary">Vorderansicht</button><button id="sideView" class="secondary">Seitenansicht</button><button id="topView" class="secondary">Draufsicht</button><button id="reset" class="secondary">Perspektive</button><button id="fullscreen" class="secondary">Vollbild 3D</button><button id="save" class="secondary">PNG speichern</button><button id="config" class="secondary">JSON speichern</button>
 <p class="muted" style="font-size:12px;line-height:1.6">Nur schematische Kundenvisualisierung. Keine Statik, Normprüfung, Fertigungszeichnung oder verbindliche Materialberechnung.</p><p id="status" role="alert"></p></aside>
 <section class="view"><canvas id="scene" aria-label="Interaktives 3D-Modell"></canvas><div class="hint">Ziehen: drehen · Scrollen / zwei Finger: zoomen · Rechtsklick: verschieben</div></section></main>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
@@ -35,14 +37,40 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 const $=id=>document.getElementById(id), canvas=$('scene');let mode='railing';
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setClearColor(0x17283c);renderer.shadowMap.enabled=true;
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(43,1,.05,180),controls=new OrbitControls(camera,canvas),model=new THREE.Group();scene.add(model);controls.enableDamping=true;controls.minDistance=.7;controls.maxDistance=100;controls.maxPolarAngle=Math.PI/2-.02;
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(43,1,.05,180),controls=new OrbitControls(camera,canvas),model=new THREE.Group();scene.add(model);const dimensionGroup=new THREE.Group();scene.add(dimensionGroup);controls.enableDamping=true;controls.minDistance=.7;controls.maxDistance=100;controls.maxPolarAngle=Math.PI/2-.02;
 scene.add(new THREE.HemisphereLight(0xe9f4ff,0x39475a,2));const sun=new THREE.DirectionalLight(0xffffff,2.6);sun.position.set(-5,11,8);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-25;sun.shadow.camera.right=25;sun.shadow.camera.top=25;sun.shadow.camera.bottom=-25;scene.add(sun);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(150,150),new THREE.MeshStandardMaterial({color:0x1b2b40,roughness:.95}));floor.rotation.x=-Math.PI/2;floor.position.y=-.055;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(100,100,0x40546a,0x2d4057);grid.position.y=-.05;scene.add(grid);
 function n(id,min,max){const v=Number($(id).value);return Number.isFinite(v)?Math.min(max,Math.max(min,v)):min}
 function box(w,h,d,x,y,z,mat){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;model.add(m);return m}
+function roundBeam(a,b,r,mat){
+ const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),v=end.clone().sub(start);
+ const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r,r,v.length(),14),mat);
+ mesh.position.copy(start.add(end).multiplyScalar(.5));mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.normalize());
+ mesh.castShadow=true;model.add(mesh);return mesh;
+}
 function beam(a,b,w,d,mat){const v=new THREE.Vector3(...b).sub(new THREE.Vector3(...a)),m=box(w,v.length(),d,0,0,0,mat);m.position.copy(new THREE.Vector3(...a).add(new THREE.Vector3(...b)).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.normalize());return m}
-function clear(){for(const child of [...model.children]){model.remove(child);child.geometry?.dispose();} }
-function mats(){const colors={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2};return {metal:new THREE.MeshStandardMaterial({color:colors[$('color').value],metalness:$('material').value==='steel'?.65:.85,roughness:$('color').value==='inox'?.23:.36}),glass:new THREE.MeshPhysicalMaterial({color:0x9bc7dc,transparent:true,opacity:.37,roughness:.08,depthWrite:false,side:THREE.DoubleSide}),wood:new THREE.MeshStandardMaterial({color:0xb98652,roughness:.77})}}
+function clear(){
+for(const group of [model,dimensionGroup])for(const child of [...group.children]){
+ group.remove(child);child.traverse?.(o=>{o.geometry?.dispose();if(o.material?.map?.userData?.dimensionLabel)o.material.map.dispose();if(o.material?.userData?.dimensionMaterial)o.material.dispose()});
+}}
+function dimLine(a,b,label){
+ if(!$('dimensions').checked)return;
+ const points=[new THREE.Vector3(...a),new THREE.Vector3(...b)];
+ const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color:0x79d5ff,depthTest:false}));
+ dimensionGroup.add(line);
+ for(const p of points){const mark=new THREE.Mesh(new THREE.SphereGeometry(.018,6,4),new THREE.MeshBasicMaterial({color:0x79d5ff,depthTest:false}));mark.position.copy(p);dimensionGroup.add(mark)}
+ const c=document.createElement('canvas');c.width=512;c.height=96;const ctx=c.getContext('2d');ctx.fillStyle='#0c1b2b';ctx.fillRect(0,0,512,96);ctx.fillStyle='#e8faff';ctx.font='bold 43px sans-serif';ctx.textAlign='center';ctx.fillText(label,256,62);
+ const tex=new THREE.CanvasTexture(c);tex.userData.dimensionLabel=true;
+ const material=new THREE.SpriteMaterial({map:tex,depthTest:false,transparent:true});material.userData.dimensionMaterial=true;
+ const sprite=new THREE.Sprite(material);sprite.position.copy(points[0]).add(points[1]).multiplyScalar(.5);sprite.scale.set(1.12,.21,1);dimensionGroup.add(sprite);
+}
+function dimRailing(L,H,B,C){
+ dimLine([-L/2,-.25,.20],[L/2,-.25,.20],Math.round(L*1000)+' mm');
+ dimLine([-L/2-.23,0,.20],[-L/2-.23,H,.20],Math.round(H*1000)+' mm');
+ if(B)dimLine([L/2+.2,-.25,0],[L/2+.2,-.25,-B],Math.round(B*1000)+' mm');
+ if(C)dimLine([L/2,-.25,-B-.2],[L/2-C,-.25,-B-.2],Math.round(C*1000)+' mm');
+}
+function mats(){const colors={'7016':0x383e47,'9005':0x111318,'9016':0xe5e8ed,'7035':0xb7bec5,'inox':0xa9b5c2,'brushed':0xb8c1ca};return {metal:new THREE.MeshStandardMaterial({color:colors[$('color').value],metalness:$('material').value==='steel'?.65:.85,roughness:$('color').value==='inox'?.23:$('color').value==='brushed'?.48:.36}),glass:new THREE.MeshPhysicalMaterial({color:0x9bc7dc,transparent:true,opacity:.37,roughness:.08,depthWrite:false,side:THREE.DoubleSide}),frosted:new THREE.MeshPhysicalMaterial({color:0xc8e0e5,transparent:true,opacity:.77,roughness:.86,depthWrite:false,side:THREE.DoubleSide}),wood:new THREE.MeshStandardMaterial({color:0xb98652,roughness:.77})}}
 let bom=[];
 function addBom(label,count,lengthMm,kgPerM){bom.push({label,count,lengthMm,kg:count*lengthMm/1000*kgPerM})}
 function kgm(profile,mat){
@@ -56,8 +84,46 @@ const postWidth=pw/1000,postDepth=pd/1000;
 const positions=new Set();for(const [[ax,az],[bx,bz]] of runs){const dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz),ux=dx/len,uz=dz/len,perp=[-uz,ux],N=Math.ceil(len/S),step=len/N;const at=(t,y,offset=0)=>[ax+ux*t+perp[0]*offset,y,az+uz*t+perp[1]*offset];for(let i=0;i<=N;i++){const p=at(i*step,0),key=`${p[0].toFixed(4)},${p[2].toFixed(4)}`;if(positions.has(key))continue;positions.add(key);postCount++;box(postWidth,H,postDepth,p[0],H/2,p[2],m.metal);
 if($('mount').value==='top'){box(.15,.015,.15,p[0],.008,p[2],m.metal);for(const dx of [-.052,.052])for(const dz of [-.052,.052]){const bolt=box(.013,.009,.013,p[0]+dx,.020,p[2]+dz,m.metal);}}
 else {box(.15,.15,.016,p[0],.12,p[2]-.073,m.metal);for(const dx of [-.05,.05])for(const dy of [.07,.17])box(.014,.014,.012,p[0]+dx,dy,p[2]-.084,m.metal)}}
-const p0=at(0,H),p1=at(len,H);beam(p0,p1,$('rail').value==='round'?hw/1000:hw/1000,$('rail').value==='round'?hw/1000:hd/1000,m.metal);
-for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(start+end)/2,inner=Math.max(.02,end-start);if($('type').value==='vertical'){beam(at(start,.15),at(end,.15),.025,.025,m.metal);const count=Math.max(1,Math.ceil(inner/.11)-1);for(let j=1;j<=count;j++){const t=start+j*inner/(count+1);beam(at(t,.16),at(t,H-.06),.018,.018,m.metal)}}else if($('type').value==='horizontal'){for(let j=1;j<=5;j++){const y=.09+j*(H-.17)/6;beam(at(start,y),at(end,y),.018,.018,m.metal)}}else{const p=at(mid,H/2);const mesh=box(inner,H-.20,.012,...p,m.glass);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));beam(at(start,.12),at(end,.12),.025,.025,m.metal)}}}
+const p0=at(0,H),p1=at(len,H);
+if($('rail').value==='round')roundBeam(p0,p1,hw/2000,m.metal);
+else beam(p0,p1,hw/1000,hd/1000,m.metal);
+for(let i=0;i<N;i++){panels++;const start=i*step+.045,end=(i+1)*step-.045,mid=(start+end)/2,inner=Math.max(.02,end-start);if($('type').value==='vertical'){beam(at(start,.15),at(end,.15),.025,.025,m.metal);const count=Math.max(1,Math.ceil(inner/(n('barGap',50,250)/1000))-1);for(let j=1;j<=count;j++){const t=start+j*inner/(count+1);beam(at(t,.16),at(t,H-.06),.018,.018,m.metal)}}else if($('type').value==='horizontal'){for(let j=1;j<=5;j++){const y=.09+j*(H-.17)/6;beam(at(start,y),at(end,y),.018,.018,m.metal)}}else if(['glass','frosted'].includes($('type').value)){
+ const p=at(mid,H/2);const mesh=box(inner,H-.20,.012,...p,$('type').value==='frosted'?m.frosted:m.glass);
+ mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));
+ if($('glassMount').value==='frame'){
+ beam(at(start,.12),at(end,.12),.025,.025,m.metal);
+ beam(at(start,H-.10),at(end,H-.10),.025,.025,m.metal);
+}else{
+ for(const t of [start+.035,end-.035])for(const y of [.28,H-.25]){
+ const pos=at(t,y,.014);const clamp=box(.065,.048,.028,...pos,m.metal);
+ clamp.rotation.y=-Math.atan2(uz,ux);
+ }
+}
+}else if($('type').value==='perforated'){
+ // Actual openings in a thin ShapeGeometry panel (conceptual punched sheet).
+ const panelHeight=Math.max(.1,H-.22),shape2=new THREE.Shape();
+ shape2.moveTo(-inner/2,0);shape2.lineTo(inner/2,0);shape2.lineTo(inner/2,panelHeight);shape2.lineTo(-inner/2,panelHeight);shape2.closePath();
+ const pitch=.09,r=.022;
+ for(let x=-inner/2+pitch/2;x<inner/2-pitch/2;x+=pitch)for(let y=pitch/2;y<panelHeight-pitch/2;y+=pitch){
+ const hole=new THREE.Path();hole.absarc(x,y,r,0,Math.PI*2,true);shape2.holes.push(hole);
+ }
+ const geom=new THREE.ShapeGeometry(shape2,3),panel=new THREE.Mesh(geom,new THREE.MeshStandardMaterial({color:m.metal.color,metalness:.65,roughness:.45,side:THREE.DoubleSide}));
+ panel.position.set(...at(mid,.11));panel.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0),new THREE.Vector3(ux,0,uz));
+ model.add(panel);
+}else if($('type').value==='mesh'){
+ const top=H-.10,bottom=.11,pitch=.15;
+ for(let t=start;t<=end;t+=pitch){
+ const t2=Math.min(end,t+pitch);
+ beam(at(t,bottom),at(t2,top),.009,.009,m.metal);
+ beam(at(t,top),at(t2,bottom),.009,.009,m.metal);
+ }
+}}}
+for(let i=1;i<runs.length;i++){
+ const corner=runs[i][0];
+ const cap=new THREE.Mesh(new THREE.SphereGeometry($('rail').value==='round'?hw/2000:Math.max(hw,hd)/2200,12,8),m.metal);
+ cap.position.set(corner[0],H,corner[1]);cap.castShadow=true;model.add(cap);
+}
+dimRailing(L,H,B,C);
 addBom('Pfosten RHS '+pp,postCount,H*1000,kgm(pp,$('material').value));
 addBom('Handlauf '+($('rail').value==='round'?'Rund (vereinfachte Gewichtsschätzung) ':'RHS ')+hp,1,(L+B+C)*1000,kgm(hp,$('material').value));
 addBom('Befestigungsplatten (Stück)',postCount,0,0);
@@ -70,6 +136,7 @@ const sign=$('turnDirection').value==='left'?-1:1,landingDepth=n('landingDepth',
 const lower=Math.min(risers-2,Math.max(2,Math.round(n('lowerRis',2,25))));
 const middle=Math.max(2,Math.min(risers-lower-2,Math.round(n('middleRis',2,20))));
 const upper=shape==='U'?risers-lower-middle:risers-lower;
+dimLine([-2.2,0,.4],[-2.2,height,.4],Math.round(height*1000)+' mm');
 $('landingOptions').classList.toggle('hidden',shape==='straight');$('uOptions').classList.toggle('hidden',shape!=='U');
 $('lowerRis').max=String(Math.max(2,risers-(shape==='U'?4:2)));$('middleRis').max=String(Math.max(2,risers-lower-2));
 const railSel=$('stairRail').value;
@@ -104,6 +171,7 @@ function flight({start,axis,count,firstRise,hasTopLanding}){
  return {length};
 }
 if(shape==='straight'){
+ dimLine([-2,-.25,.4],[2,-.25,.4],Math.round((risers-1)*tread*1000)+' mm');dimLine([-2.2,0,.4],[-2.2,height,.4],Math.round(height*1000)+' mm');
  const count=risers,steps=risers-1;
  const length=steps*tread;
  flight({start:[-length/2,0],axis:[1,0],count,firstRise:0,hasTopLanding:true});
@@ -137,12 +205,30 @@ const secondStart=[origin[0]+lowerLength+landingDepth-width/2,sign*(landingDepth
 flight({start:secondStart,axis:[0,sign],count:upper,firstRise:lower,hasTopLanding:true});
 return `Form: L-Stiege (${sign===-1?'links':'rechts'})<br>Geschosshöhe: ${Math.round(height*1000)} mm<br>Steigungen: ${risers} × ${(rise*1000).toFixed(1)} mm<br>Unterer Lauf: ${lower} Steigungen · ${lowerSteps} Stufen<br>Oberer Lauf: ${upper} Steigungen · ${upperSteps} Stufen<br>Podest: ${Math.round(landingDepth*1000)} mm (schematisch)<br>Gezeichnete Stufen: ${actualSteps} + Podest + Geschossfläche<br>Breite: ${Math.round(width*1000)} mm · Schrittmaß: ${((2*rise+tread)*1000).toFixed(0)} mm<br><small>Podestanschlüsse, Geländerübergänge und Stufenpositionen sind nur eine Entwurfsvisualisierung.</small>`;
 }
-function rebuild(){try{bom=[];clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
+function updateEnvironment(){
+ const env=$('environment').value;
+ const bg=env==='studio'?0x17283c:env==='bright'?0xe2eaf1:0xa7c9df;
+ renderer.setClearColor(bg);
+ floor.material.color.setHex(env==='studio'?0x1b2b40:env==='bright'?0xc4ced8:0x8fa48c);
+ grid.visible=env!=='outdoor';
+}
+function rebuild(){try{updateEnvironment();bom=[];$('csv').disabled=mode==='stairs';clear();const m=mats(),details=mode==='railing'?railing(m):staircase(m);$('summary').innerHTML=`<strong>${$('project').value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</strong><br>${details}`;$('materials').innerHTML=mode==='railing'?'<strong>Materialübersicht (überschlägig)</strong><br>'+bom.map(x=>`${x.label}: ${x.count} Stk. · ${Math.round(x.lengthMm)} mm je Stück${x.kg?' · '+x.kg.toFixed(1)+' kg':''}`).join('<br>')+`<br><strong>Profilgewicht gesamt: ${bom.reduce((s,x)=>s+x.kg,0).toFixed(1)} kg</strong><br><small>Ohne Füllstäbe, Glas, Schweißnähte, Verschnitt und Plattengewicht. Keine Zuschnittliste.</small>`:'<strong>Stiegen-Materialübersicht</strong><br>Für Stiegen noch keine belastbare Profilberechnung verfügbar.';
 $('status').textContent=''}catch(e){$('status').textContent='Modellfehler: '+e.message;console.error(e)}}
 function fit(front=false){const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());const r=Math.max(size.length(),1.5),distance=Math.min(95,r*1.7);controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(front?0:distance*.55,front?0:distance*.42,distance));camera.near=.05;camera.far=250;camera.updateProjectionMatrix();controls.update()}
 function switchMode(next){mode=next;$('railing').classList.toggle('hidden',mode!=='railing');$('stairs').classList.toggle('hidden',mode!=='stairs');$('tabR').setAttribute('aria-pressed',String(mode==='railing'));$('tabS').setAttribute('aria-pressed',String(mode==='stairs'));rebuild();fit()}
 $('tabR').onclick=()=>switchMode('railing');$('tabS').onclick=()=>switchMode('stairs');
 for(const el of document.querySelectorAll('aside input, aside select'))el.addEventListener('input',()=>{rebuild();if(el.id==='stairShape'||el.id==='shape'||el.id==='rise'||el.id==='length')fit()});
+function cameraView(kind){
+ const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),d=Math.max(3,size.length()*1.8);
+ controls.target.copy(center);
+ const dir=kind==='top'?[.001,1,.001]:kind==='side'?[1,.001,0]:kind==='front'?[0,.001,1]:[.55,.42,1];
+ camera.position.copy(center).add(new THREE.Vector3(...dir).normalize().multiplyScalar(d));
+ camera.up.set(0,1,0);camera.lookAt(center);controls.update();
+}
+$('dimensions').addEventListener('change',()=>{rebuild()});
+$('sideView').onclick=()=>cameraView('side');$('topView').onclick=()=>cameraView('top');
+$('fullscreen').onclick=async()=>{const view=document.querySelector('.view');try{if(document.fullscreenElement)await document.exitFullscreen();else await view.requestFullscreen()}catch(e){$('status').textContent='Vollbild nicht verfügbar: '+e.message}};
+document.addEventListener('fullscreenchange',()=>{$('fullscreen').textContent=document.fullscreenElement?'Vollbild beenden':'Vollbild 3D';resize()});
 $('fit').onclick=()=>fit();$('front').onclick=()=>fit(true);$('reset').onclick=()=>fit(false);
 $('save').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`metal-design-3d-${mode}.png`;a.click()};
 $('csv').onclick=()=>{
@@ -150,6 +236,6 @@ $('csv').onclick=()=>{
  const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');
  const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='metal-design-materialuebersicht.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
-$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','spacing','mount','rail','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail'];const data={application:'METAL DESIGN 3D',version:'1.7',mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+$('config').onclick=()=>{const ids=mode==='railing'?['shape','length','height','side1','side2','type','barGap','spacing','mount','rail','glassMount','environment','postProfile','handProfile']:['stairShape','rise','stairWidth','tread','targetRiser','lowerRis','landingDepth','turnDirection','stepMaterial','stringer','stairRail','environment'];const data={application:'METAL DESIGN 3D',version:'1.9',mode,project:$('project').value,material:$('material').value,color:$('color').value,parameters:Object.fromEntries(ids.map(id=>[id,$(id).value]))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`metal-design-3d-${mode}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(canvas);function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}rebuild();fit();resize();animate();
 </script></body></html>
